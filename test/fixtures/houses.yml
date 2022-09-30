@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  house_name: MyString
+  address: MyString
+  avg_candy: 1
+  avg_scary: 1
+
+two:
+  house_name: MyString
+  address: MyString
+  avg_candy: 1
+  avg_scary: 1
