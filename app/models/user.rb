@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :scores
-  has_many :favorites
+  # has_many :scores
+  has_many :favorites, dependent: :destroy
 
-  has_many :houses, through: :scores
+  # has_many :houses, through: :scores
   has_many :houses, through: :favorites
 
 end
