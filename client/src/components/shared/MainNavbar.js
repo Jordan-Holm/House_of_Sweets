@@ -9,6 +9,9 @@ const MainNavbar = () => {
                     <Link to='/'>
                         <li>HOME</li>
                     </Link>
+                    <Link to='/houses'>
+                        <li>VIEW HOUSES</li>
+                    </Link>
                 </ul>
             </nav>
         </>
