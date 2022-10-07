@@ -19,15 +19,6 @@ class Api::FavoritesController < ApplicationController
     end
   end
 
-  def update
-    if @favorite.update(favorite_params)
-      render json: @favorite
-    else
-      render json: {errors: @favorite.errors }, status: :unprocessable_entity
-    end
-
-  end
-
   def destroy
     @favorite.destroy
     render json: { message: 'favorite house deleted' }

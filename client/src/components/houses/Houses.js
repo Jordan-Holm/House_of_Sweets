@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import HouseList from './HouseList';
-//import HouseForm from './HouseForm';
+import HouseForm from './HouseForm';
 import { Modal, Button } from 'react-bootstrap';
 import { HouseConsumer } from '../../providers/HouseProvider';
 
@@ -18,7 +18,7 @@ const Houses = ({ addHouse, houses }) => {
           <Modal.Title>Add House</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UserForm addHouse={addHouse} setAdd={setAdd} />
+          <HouseForm addHouse={addHouse} setAdd={setAdd} />
         </Modal.Body>
       </Modal>
 
