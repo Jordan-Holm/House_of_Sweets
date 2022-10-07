@@ -1,10 +1,15 @@
 import HouseShow from './HouseShow';
 import { } from 'react-bootstrap';
 
-const HouseList = () => (
-  <>
+const HouseList = ({ houses }) => (
+  <container>
+    <Row md='4' sm='12'>
+      { houses.map( h => 
+        <COL)}
+    </Row>
+
   
-  </>
+  </container>
   
 )
 
