@@ -1,5 +1,5 @@
 import HouseShow from './HouseShow';
-import { } from 'react-bootstrap';
+import {Container, Row, Col } from 'react-bootstrap';
 
 const HouseList = ({ houses }) => (
   <Container>
