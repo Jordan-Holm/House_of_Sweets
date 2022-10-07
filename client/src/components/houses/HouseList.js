@@ -2,14 +2,19 @@ import HouseShow from './HouseShow';
 import { } from 'react-bootstrap';
 
 const HouseList = ({ houses }) => (
-  <container>
+  <Container>
     <Row md='4' sm='12'>
       { houses.map( h => 
-        <COL)}
+        <Col key={h.id}>
+          <HouseShow
+            {...h}
+          />
+        </Col>
+      )}
     </Row>
 
   
-  </container>
+  </Container>
   
 )
 
