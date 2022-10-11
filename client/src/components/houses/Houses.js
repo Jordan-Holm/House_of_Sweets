@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HouseList from './HouseList';
 import HouseForm from './HouseForm';
 import { Modal, Button } from 'react-bootstrap';
 import { HouseConsumer } from '../../providers/HouseProvider';
 
-const Houses = ({ addHouse, houses }) => {
+const Houses = ({ addHouse, houses, getAllHouses }) => {
   const [adding, setAdd] = useState(false)
 
+  useEffect( () => {
+    getAllHouses()
+  }, [])
+  
   return (
     <>
       <Button onClick={() => setAdd(true)}>
@@ -32,7 +36,7 @@ const Houses = ({ addHouse, houses }) => {
 
 const ConnectedHouses = (props) => (
     <HouseConsumer>
-      { value => <Houses {...value} {...props} /> }
+      { value => <Houses {...props} {...value} /> }
     </HouseConsumer>
   )
   

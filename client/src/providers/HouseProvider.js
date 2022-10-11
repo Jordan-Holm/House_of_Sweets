@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ const HouseProvider = ({ children }) => {
   const [houses, setHouses] = useState([])
   const navigate = useNavigate()
 
-  useEffect( () => {
+  const getAllHouses = () => {
     axios.get('/api/houses')
       .then( res => setHouses(res.data))
-      .catch( err => console.log(err) )
-  }, [])
+      .catch( err => console.log(err.response.data.errors.full_messages[0]) )
+  }
 
   const addHouse = (house) => {
     axios.post(`/api/houses`, { house })
@@ -25,7 +25,7 @@ const HouseProvider = ({ children }) => {
   const updateHouse = (id, house) => {
     axios.put(`/api/houses/${id}`, { houses })
       .then( res => {
-        const newUpdatedHouses = house.map( h => {
+        const newUpdatedHouses = houses.map( h => {
           if (h.id === id) {
             return res.data
           }
@@ -54,6 +54,7 @@ const HouseProvider = ({ children }) => {
       addHouse, 
       updateHouse,
       deleteHouse,
+      getAllHouses
     }}>
       { children }
     </HouseContext.Provider>

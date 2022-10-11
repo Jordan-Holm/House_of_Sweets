@@ -75,7 +75,7 @@ const MainNavbar = ({ user, handleLogout }) => {
             padding: "15px"
             }} 
             expand="lg">
-            <Container fluid>
+            <Container fluid="true">
                 <Navbar.Brand>
                     <Link 
                         to="/"
@@ -87,7 +87,7 @@ const MainNavbar = ({ user, handleLogout }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav 
-                        fluid
+                        fluid="true"
                         className="me-auto"
                         style={{ 
                             textAlign: "center",

@@ -14,7 +14,7 @@ class Api::HousesController < ApplicationController
     if @house.save 
       render json: @house
     else
-      render json: { errors: @house.error }, status: :unprocessable_entity
+      render json: { errors: @house.errors }, status: :unprocessable_entity
     end
   end
 
@@ -22,7 +22,7 @@ class Api::HousesController < ApplicationController
     if @house.update(house_params)
       render json: @house
     else 
-      render json: { errors: @house.error }, status: :unprocessable_entity
+      render json: { errors: @house.errors }, status: :unprocessable_entity
     end
   end
 
