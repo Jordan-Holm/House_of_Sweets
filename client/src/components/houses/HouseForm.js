@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import {HouseConsumer} from '../../providers/HouseProvider'
 
-const HouseForm = ({ addHouse, setAdd, id, house_name, address, city, img, setEdit }) => {
-  const [user, setHouse] = useState({ house_name: '', address: '', city: '', img: '' })
+const HouseForm = ({ addHouse, updateHouse, setAdd, id, house_name, address, city, img, setEdit }) => {
+  const [house, setHouse] = useState({ house_name: '', address: '', city: '', img: '' })
   
   useEffect( () => {
     if (id) {
@@ -19,7 +20,7 @@ const HouseForm = ({ addHouse, setAdd, id, house_name, address, city, img, setEd
       addHouse(house)
       setAdd(false)
     }
-    sethouse({ house_name: '', address: '', city: '', img: '' })
+    setHouse({ house_name: '', address: '', city: '', img: '' })
   }
 
   return (
@@ -59,7 +60,7 @@ const HouseForm = ({ addHouse, setAdd, id, house_name, address, city, img, setEd
           <Form.Label>House Image</Form.Label>
           <Form.Control 
             name='img'
-            value={user.img}
+            value={house.img}
             onChange={(e) => setHouse({...house, img: e.target.value })}
             placeholder="image" 
             required
@@ -73,4 +74,10 @@ const HouseForm = ({ addHouse, setAdd, id, house_name, address, city, img, setEd
   )
 }
 
-export default HouseForm;
+const ConnectedHouseForm = (props) => (
+  <HouseConsumer>
+    { value => <HouseForm {...props} {...value} />}
+  </HouseConsumer>
+)
+
+export default ConnectedHouseForm;
