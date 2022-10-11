@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import { AuthConsumer } from "../../providers/AuthProvider";
 
 const MainNavbar = ({ user, handleLogout }) => {
 
+    const linkColor = "white"
+
     const correctNavItems = () => {
+        
         if (user) {
 
             return(
                 <>
-                    <Link to='/profile'>
+                    {/* <Link to='/profile'>
                         <li>Profile</li>
                     </Link>
                     <Link to='/houses'>
@@ -16,35 +20,94 @@ const MainNavbar = ({ user, handleLogout }) => {
                     </Link>
                     <button onClick= {() => handleLogout() }>
                         Logout
-                    </button>
+                    </button> */}
+                    <Nav.Link 
+                        href={"/profile"}
+                        style={{ color: linkColor }}
+                    >
+                        Profile
+                    </Nav.Link>
+                    <Nav.Link 
+                        href={"/houses"}
+                        style={{ color: linkColor }}
+                    >
+                        Houses
+                    </Nav.Link>
+                    <Button 
+                        onClick={() => handleLogout()}
+                        style={{ backgroundColor: 'grey', borderColor: 'black'}}
+                    >
+                        Logout
+                    </Button>
                 </>
             )
         } else {
 
             return (
                 <>
-                    <Link to='/login'>
+                    {/* <Link to='/login'>
                         <li>Login</li>
                     </Link>
                     <Link to='/register'>
                         <li>Register</li>
-                    </Link>
+                    </Link> */}
+                    <Nav.Link 
+                        href={"/login"}
+                        style={{ color: linkColor }}
+                    >
+                        Login
+                    </Nav.Link>
+                    <Nav.Link 
+                        href={"/register"}
+                        style={{ color: linkColor }}
+                    >
+                        Create An Account
+                    </Nav.Link>
                 </>
             )
         }
     }
 
     return (
-        <>
-            <nav>
-                <ul>
-                    <Link to='/'>
-                        Home
+        <Navbar style={{ 
+            backgroundColor: 'purple',
+            border: "3px solid lightgrey",
+            padding: "15px"
+            }} 
+            expand="lg">
+            <Container fluid>
+                <Navbar.Brand>
+                    <Link 
+                        to="/"
+                        style={{ textDecoration: 'none', color: 'orange'}}
+                    >
+                            House of Sweets
                     </Link>
-                    { correctNavItems() }
-                </ul>
-            </nav>
-        </>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav 
+                        fluid
+                        className="me-auto"
+                        style={{ 
+                            textAlign: "center",
+                            backgroundColor: "#973ead",
+                            border: "5px solid #7a318c",
+                            position: "relative",
+                            top: "10px"
+                        }}
+                    >
+                        <Nav.Link 
+                            href={"/"}
+                            style={{ color: linkColor }}
+                        >
+                            Home
+                        </Nav.Link>
+                        { correctNavItems() }
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 

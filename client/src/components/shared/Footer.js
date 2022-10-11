@@ -1,7 +1,7 @@
 
 const Footer = () => (
     <>
-        <h1>FOOTER</h1>
+        <p>©2022 - TERMS | PRIVACY</p>
     </>
 )
 

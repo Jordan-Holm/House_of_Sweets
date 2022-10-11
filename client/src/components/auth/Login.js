@@ -3,7 +3,6 @@ import { useState } from "react";
 import Flash from "../shared/Flash";
 
 const Login = ({ handleLogin, errors, setErrors }) => {
-
     const [user, setUser] = useState({ email: '', password: '' })
 
     const handleSubmit = (e) => {
