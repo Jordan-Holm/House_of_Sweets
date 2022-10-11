@@ -12,10 +12,7 @@ const HouseList = ({ houses }) => (
         </Col>
       )}
     </Row>
-
-  
   </Container>
-  
 )
 
 export default HouseList;
