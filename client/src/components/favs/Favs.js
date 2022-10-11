@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import HouseList from './HouseList';
-import HouseForm from './HouseForm';
+//import FavsList from './FavsList';
+//import FavsForm from './FavsForm';
 import { Modal, Button } from 'react-bootstrap';
-import { HouseConsumer } from '../../providers/HouseProvider';
+import { FavsConsumer } from '../../providers/FavsProvider';
 
-const Houses = ({ addHouse, houses }) => {
+const Favs = ({ addFavs, favs }) => {
   const [adding, setAdd] = useState(false)
 
   return (
@@ -15,7 +15,7 @@ const Houses = ({ addHouse, houses }) => {
 
       <Modal show={adding} onHide={() => setAdd(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add House</Modal.Title>
+          <Modal.Title>Favorite</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <HouseForm addHouse={addHouse} setAdd={setAdd} />
