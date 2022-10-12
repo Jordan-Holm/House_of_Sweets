@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {HouseConsumer} from '../../providers/HouseProvider'
 
-const HouseForm = ({ addHouse, updateHouse, setAdd, id, house_name, address, city, img, setEdit }) => {
+const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, address, city, img }) => {
   const [house, setHouse] = useState({ house_name: '', address: '', city: '', img: '' })
   
   useEffect( () => {
     if (id) {
-      setHouse({ house_name, address, city, img, })
+      setHouse({ house_name, address, city, img })
     }
   }, [])
 
@@ -17,6 +17,11 @@ const HouseForm = ({ addHouse, updateHouse, setAdd, id, house_name, address, cit
       updateHouse(id, house)
       setEdit(false)
     } else {
+      // if (house.img === ''){
+      //   const defaultImg = "http://clipart-library.com/img1/1539486.png"
+      //   setHouse({ ...house, img: defaultImg })
+      //   console.log(house)
+      // }
       addHouse(house)
       setAdd(false)
     }

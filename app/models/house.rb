@@ -5,6 +5,6 @@ class House < ApplicationRecord
     has_many :users, through: :scores
     # has_many :users, through: :favorites
 
-    validates :house_name, :address, :city, :avg_candy, :avg_scary, presence: true
+    validates :house_name, :address, :city, :img, presence: true
     validates :address, uniqueness: true
 end

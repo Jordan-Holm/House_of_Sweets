@@ -17,13 +17,13 @@ const HouseProvider = ({ children }) => {
   }
 
   const addHouse = (house) => {
-    axios.post(`/api/houses`, { house })
+    axios.post('/api/houses', { house })
       .then( res => setHouses([...houses, res.data]))
       .catch( err => console.log(err) )
   }
 
   const updateHouse = (id, house) => {
-    axios.put(`/api/houses/${id}`, { houses })
+    axios.put(`/api/houses/${id}`, { house })
       .then( res => {
         const newUpdatedHouses = houses.map( h => {
           if (h.id === id) {
