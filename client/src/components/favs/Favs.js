@@ -1,6 +1,5 @@
 import { useState } from 'react';
 //import FavsList from './FavsList';
-//import FavsForm from './FavsForm';
 import { Modal, Button } from 'react-bootstrap';
 import { FavsConsumer } from '../../providers/FavsProvider';
 
@@ -18,22 +17,22 @@ const Favs = ({ addFavs, favs }) => {
           <Modal.Title>Favorite</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <HouseForm addHouse={addHouse} setAdd={setAdd} />
+          <FavsForm addFavs={addFavs} setAdd={setAdd} />
         </Modal.Body>
       </Modal>
 
-      <h1>All Houses</h1>
-      <HouseList 
-        houses={houses}
+      <h1>All Favorites</h1>
+      <FavsList 
+        favs={favs}
       />
     </>
   )
 }
 
-const ConnectedHouses = (props) => (
-    <HouseConsumer>
-      { value => <Houses {...value} {...props} /> }
-    </HouseConsumer>
+const ConnectedFavs = (props) => (
+    <FavsConsumer>
+      { value => <Favs {...value} {...props} /> }
+    </FavsConsumer>
   )
   
-  export default ConnectedHouses;
+  export default ConnectedFavs;
