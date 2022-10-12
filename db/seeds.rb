@@ -18,6 +18,8 @@ User.delete_all
         @house = House.create(
             house_name: Faker::Name.last_name,
             address: Faker::Address.street_address,
+            city: Faker::Fantasy::Tolkien.location,
+            img: Faker::Avatar::image,
             avg_candy: Faker::Number.decimal(l_digits: 2),
             avg_scary: Faker::Number.decimal(l_digits: 2)
         )

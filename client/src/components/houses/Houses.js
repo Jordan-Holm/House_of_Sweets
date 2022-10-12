@@ -27,6 +27,7 @@ const Houses = ({ addHouse, houses, getAllHouses }) => {
       </Modal>
 
       <h1>All Houses</h1>
+      <h6>Filter</h6>
       <HouseList 
         houses={houses}
       />

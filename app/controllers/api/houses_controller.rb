@@ -34,7 +34,7 @@ class Api::HousesController < ApplicationController
   private 
 
     def house_params
-      params.require(:house).permit(:house_name, :address, :avg_candy, :avg_scary )
+      params.require(:house).permit(:house_name, :address, :city, :img, :avg_candy, :avg_scary )
     end
 
     def set_house
