@@ -19,6 +19,33 @@ class Api::HousesController < ApplicationController
   end
 
   def update
+    house.house_name = params[:house_name] ? params[:house_name] : house.house_name
+    house.address = params[:address] ? params[:address] : house.address
+    house.city = params[:city] ? params[:city] : house.city
+
+    file = params[:file]
+
+    if file && file != '' && file != "undefined"
+      begin
+        ext = File.extname(file.tempfile)
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+        house.image = cloud_image['secure_url']
+        if house.save
+          render json: house
+        else
+          render json: { errors: house.errors.full_messages }, status: 422
+        end
+      rescue => e
+        render json: { errros: e }, status: 422
+      end
+    else
+      if house.save
+        render json: house
+      else
+        render json: { errors: house.errors.full_messages }, status: 422
+      end
+    end
+    
     if @house.update(house_params)
       render json: @house
     else 

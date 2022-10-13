@@ -1,25 +1,16 @@
 import { Card, ListGroup, Modal, Button, Container, Row, Col, Image, ToggleButton } from 'react-bootstrap';
 import { HouseConsumer } from '../../providers/HouseProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HouseForm from './HouseForm';
+import axios from 'axios';
+import { AuthConsumer } from '../../providers/AuthProvider';
+import { FavsConsumer } from '../../providers/FavsProvider';
 
-const HouseShow = ({ id, house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse }) => {
+const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse }) => {
   const [showing, setShow] = useState(false)
-  const [checked, setChecked] = useState(false)
   const [editing, setEdit] = useState(false)
-  
-  const toggleFav = () => {
-    if (checked) {
-      return (
-        <p>Favorited</p>
-      )
-    } else {
-      return (
-        <p>Favorite</p>
-      )
-    }
-  }
+
   return (
     
     <>
@@ -57,15 +48,11 @@ const HouseShow = ({ id, house_name, address, city, img, avg_candy, avg_scary, d
                     <br />
                     Avg_scary: {avg_scary}
                     <br/>
-                      <ToggleButton
-                        id='toggle-check'
-                        type="checkbox"
-                        checked={checked}
-                        value='1'
-                        onChange={(e) => setChecked(e.currentTarget.checked)}
+                      <Button
+                        onClick={() => addFavs({ houseId: id, userId: user.id })}
                       >
-                        { toggleFav() }
-                      </ToggleButton>
+                        Add to Favorites
+                      </Button>
                       <Button>Rate</Button>
                       <Button 
                         onClick={() => setEdit(true)}
@@ -114,4 +101,16 @@ const ConnectedHouseShow = (props) => (
   </HouseConsumer>
 )
 
-export default ConnectedHouseShow;
+const ConnectedAuthProvider = (props) =>  (
+  <AuthConsumer>
+    { value => <ConnectedHouseShow {...props} {...value} />}
+  </AuthConsumer>
+)
+
+const ConnectedFavoriteProfider = (props) => (
+  <FavsConsumer>
+    { value => <ConnectedAuthProvider {...props} {...value} />}
+  </FavsConsumer>
+)
+
+export default ConnectedFavoriteProfider;

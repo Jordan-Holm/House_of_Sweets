@@ -3,7 +3,7 @@ class Api::FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
 
   def index
-    render json: @user.favorite.all
+    render json: @user.favorites.all
   end
 
   def show
@@ -11,7 +11,7 @@ class Api::FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = @user.favorite.new(favorite_params)
+    @favorite = @user.favorites.new(favorite_params)
     if @favorite.save 
       render json: @favorite
     else
@@ -26,11 +26,11 @@ class Api::FavoritesController < ApplicationController
 
   private
     def favorite_params
-      params.require(:favorite).permit()
+      params.require(:favorite).permit(:house_id, :user_id)
     end
     
     def set_favorite
-      @favorite = @user.favorite.find(params[:id])
+      @favorite = @user.favorites.find(params[:id])
     end
 
     def set_parent
