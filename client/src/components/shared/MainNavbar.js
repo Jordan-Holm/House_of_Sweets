@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image } from "react-bootstrap";
 import { AuthConsumer } from "../../providers/AuthProvider";
 
 const MainNavbar = ({ user, handleLogout }) => {
@@ -22,20 +22,34 @@ const MainNavbar = ({ user, handleLogout }) => {
                         Logout
                     </button> */}
                     <Nav.Link 
-                        href={"/profile"}
-                        style={{ color: linkColor }}
-                    >
-                        Profile
-                    </Nav.Link>
-                    <Nav.Link 
                         href={"/houses"}
                         style={{ color: linkColor }}
                     >
                         Houses
                     </Nav.Link>
+                    <OverlayTrigger
+                        placement="bottom"
+                        overlay={<Tooltip id="button-tooltip-2">Profile</Tooltip>}
+                    >
+                        <Nav.Link 
+                            href={"/profile"}
+                            style={{ color: linkColor }}
+                        >
+                            <Image
+                                roundedCircle
+                                width="25px"
+                                height="25px"
+                                src={user.image}
+                            />
+                            {user.nickname}
+                        </Nav.Link>
+                    </OverlayTrigger>
                     <Button 
                         onClick={() => handleLogout()}
-                        style={{ backgroundColor: 'grey', borderColor: 'black'}}
+                        style={{ 
+                            backgroundColor: 'grey', 
+                            borderColor: 'black',
+                        }}
                     >
                         Logout
                     </Button>
@@ -51,6 +65,10 @@ const MainNavbar = ({ user, handleLogout }) => {
                     <Link to='/register'>
                         <li>Register</li>
                     </Link> */}
+                    <Nav.Link 
+                        href={"/houses"}
+                        style={{ color: linkColor }}
+                    ></Nav.Link>
                     <Nav.Link 
                         href={"/login"}
                         style={{ color: linkColor }}

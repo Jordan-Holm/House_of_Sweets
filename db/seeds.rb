@@ -8,17 +8,19 @@ User.delete_all
     puts i
     @user = User.create(
         email: "test#{i}@email.com",
+        image: Faker::Avatar::image,
         password: "password",
         name: "test_name#{i}",
         nickname: "test_user_name#{1}"
     )
     i++
 
-    10.times do
+    5.times do
+        cities = [ "Lehi", "Provo", "Salt Lake City"]
         @house = House.create(
             house_name: Faker::Name.last_name,
             address: Faker::Address.street_address,
-            city: Faker::Fantasy::Tolkien.location,
+            city: cities.sample,
             img: Faker::Avatar::image,
             avg_candy: Faker::Number.decimal(l_digits: 2),
             avg_scary: Faker::Number.decimal(l_digits: 2)

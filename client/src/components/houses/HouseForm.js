@@ -1,15 +1,37 @@
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import {HouseConsumer} from '../../providers/HouseProvider'
+import {HouseConsumer} from '../../providers/HouseProvider';
+
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, address, city, img }) => {
   const [house, setHouse] = useState({ house_name: '', address: '', city: '', img: '' })
-  
+  const [file, setFile] = useState()
+
   useEffect( () => {
     if (id) {
       setHouse({ house_name, address, city, img })
     }
   }, [])
+
+  const defautlImg = "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+  const handleFileUpdate = (fileItems) => {
+    if (fileItems.length !== 0) {
+      setFile(fileItems)
+      setHouse({ ...house, img: fileItems[0].file })
+    }
+  }
+
+  const handleFileRemoved = ( e, file ) => {
+    setFile(null)
+    setHouse({ ...house, img: null })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,12 +39,12 @@ const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, add
       updateHouse(id, house)
       setEdit(false)
     } else {
-      // if (house.img === ''){
-      //   const defaultImg = "http://clipart-library.com/img1/1539486.png"
-      //   setHouse({ ...house, img: defaultImg })
-      //   console.log(house)
-      // }
-      addHouse(house)
+      if (house.img === ''){
+        const newHouse = { ...house, img: defautlImg}
+        addHouse(newHouse)
+      } else {
+        addHouse(house)
+      }
       setAdd(false)
     }
     setHouse({ house_name: '', address: '', city: '', img: '' })
@@ -63,12 +85,13 @@ const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, add
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>House Image</Form.Label>
-          <Form.Control 
-            name='img'
-            value={house.img}
-            onChange={(e) => setHouse({...house, img: e.target.value })}
-            placeholder="image" 
-            required
+          <FilePond
+            files={file}
+            onupdatefiles={handleFileUpdate} 
+            onremovefile={handleFileRemoved}
+            allowMultiple={false}
+            name="image"
+            labelIdle='Drag and Drop your files or <span class="filepond--label-action">Browse</span>'
           />
         </Form.Group>
         <Button variant="primary" type="submit">

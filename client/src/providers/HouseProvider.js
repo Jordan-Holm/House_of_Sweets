@@ -23,6 +23,11 @@ const HouseProvider = ({ children }) => {
   }
 
   const updateHouse = (id, house) => {
+    let data = new FormData()
+    data.append('name', house.house_name)
+    data.append('address', house.address)
+    data.append('city', house.city)
+    data.append('file', house.img)
     axios.put(`/api/houses/${id}`, { house })
       .then( res => {
         const newUpdatedHouses = houses.map( h => {

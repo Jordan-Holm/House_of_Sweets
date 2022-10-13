@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './providers/AuthProvider';
 import { initMiddleware } from 'devise-axios';
+import HouseProvider from './providers/HouseProvider';
+import FavsProvider from './providers/FavsProvider';
 
 initMiddleware()
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +15,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <HouseProvider>
+          <FavsProvider>
+            <App />
+          </FavsProvider>
+        </HouseProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
