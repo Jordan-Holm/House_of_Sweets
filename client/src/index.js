@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './providers/AuthProvider';
 import HouseProvider from './providers/HouseProvider';
 import FavsProvider from './providers/FavsProvider';
+import ScoreProvider from './providers/ScoreProvider';
 import { initMiddleware } from 'devise-axios';
 
 initMiddleware()
@@ -17,7 +18,9 @@ root.render(
       <AuthProvider>
         <HouseProvider>
           <FavsProvider>
-            <App />
+            <ScoreProvider>
+              <App />
+            </ScoreProvider>
           </FavsProvider>
         </HouseProvider>
       </AuthProvider>
