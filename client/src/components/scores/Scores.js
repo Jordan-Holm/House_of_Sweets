@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ScoreConsumer } from '../../providers/ScoreProvider';
 import { AuthConsumer } from '../../providers/AuthProvider';
-
+import ScoresList from './ScoresList';
 const Scores = ({ house, user, addScores, getAllScores, updateScores, deleteScores, scores }) => {
 
   useEffect( () => {
@@ -11,7 +11,7 @@ const Scores = ({ house, user, addScores, getAllScores, updateScores, deleteScor
   return (
     <>
       <h1>User Scores</h1>
-      <ScoreList 
+      <ScoresList 
         scores={scores}
         houseId={house.id}
         userId={user.id}
