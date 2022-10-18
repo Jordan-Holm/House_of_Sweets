@@ -22,11 +22,7 @@ const App = () => (
           <Route path="/" element={ <Home /> } />
           <Route path="/register" element={ <Register />} />
           <Route path='/houses' element={ <Houses />} />
-<<<<<<< HEAD
           <Route path='/houses/:houseId' element={ <HouseDetail />} />
-=======
-          <Route path='/houses/:houseid' element={ <HouseDetail />} />
->>>>>>> ad726ccb3952ad0956d069d12aca56e5544c9d3e
           <Route path='/login' element={ <Login />} />
           <Route path="/profile" element={ <Profile />} />
           <Route path="/*" element={ <Nomatch /> } />
