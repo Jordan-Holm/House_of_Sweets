@@ -10,6 +10,7 @@ import { FavsConsumer } from '../../providers/FavsProvider';
 const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
     const [showing, setShow] = useState(false)
     const [editing, setEdit] = useState(false)
+
     // const [house, setHouse] = useState({ 
     //     house_name: '',
     //     address: '',
@@ -121,6 +122,7 @@ const ConnectedHouseDetail = (props) => (
         { value => <HouseDetail {...props} {...value}/>}
     </HouseConsumer>
 )
+
 const ConnectedAuthProvider = (props) =>  (
     <AuthConsumer>
       { value => <ConnectedHouseDetail {...props} {...value} />}
