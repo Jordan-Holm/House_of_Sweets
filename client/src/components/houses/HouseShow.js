@@ -21,7 +21,17 @@ const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_can
             <ListGroup.Item>Candy Rating: {avg_candy}</ListGroup.Item>
             <ListGroup.Item>Scary Rating: {avg_scary}</ListGroup.Item>
           </ListGroup>
-          <Link to={`/houses/${id}`}>
+          <Link 
+            to={`/houses/${id}`}
+            state={{
+              address,
+              city,
+              img,
+              house_name,
+              avg_candy,
+              avg_scary,
+            }}
+            >
             <Button 
               variant="primary"
               id={id}
