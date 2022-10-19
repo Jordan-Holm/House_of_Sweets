@@ -8,8 +8,8 @@ export const ScoreConsumer = ScoreContext.Consumer;
 const ScoreProvider = ({ children }) => {
   const [scores, setScores] = useState([])
 
-  const getAllScores = (houseId) => {
-    axios.get(`/api/houses/${houseId}/scores`)
+  const getAllScores = (house_id) => {
+    axios.get(`/api/houses/${house_id}/scores`)
       .then( res => setScores(res.data) )
       .catch( err => console.log(err) )
   }

@@ -11,9 +11,7 @@ import { FavsConsumer } from '../../providers/FavsProvider';
 import { ScoreConsumer } from '../../providers/ScoreProvider';
 
 const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse, addScore }) => {
-  const [showing, setShow] = useState(false)
   const [addingScore, setScoreAdd] = useState(false)
-  const [editing, setEdit] = useState(false)
 
   return (
     
