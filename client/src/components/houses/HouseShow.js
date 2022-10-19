@@ -6,9 +6,10 @@ import HouseForm from './HouseForm';
 import axios from 'axios';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { FavsConsumer } from '../../providers/FavsProvider';
-
-const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse }) => {
-
+import { ScoreConsumer } from '../../providers/ScoreProvider';
+import ScoresForm from '../scores/ScoresForm';
+const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse, addScores }) => {
+  const [adding, setAdd] = useState(false)
   return (
     
     <>
@@ -39,9 +40,17 @@ const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_can
               View
             </Button>
           </Link>
-          <Button>
+          <Button onClick={ () => setAdd(true)}>
             Rate
           </Button>
+          <Modal show={adding} onHide={() => setAdd(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Add House</Modal.Title>
+            </Modal.Header>
+              <Modal.Body>
+                <ScoresForm addScores={addScores} setAdd={setAdd} />
+              </Modal.Body>
+          </Modal>
         </Card.Body>
       </Card>
     </>
@@ -66,4 +75,10 @@ const ConnectedFavoriteProfider = (props) => (
   </FavsConsumer>
 )
 
-export default ConnectedFavoriteProfider;
+const ConnectedScoresProvider = (props) => (
+  <ScoreConsumer>
+    { value => <ConnectedFavoriteProfider {...props} {...value} /> }
+  </ScoreConsumer>
+)
+
+export default ConnectedScoresProvider;

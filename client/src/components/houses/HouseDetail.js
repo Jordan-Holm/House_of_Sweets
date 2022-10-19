@@ -6,7 +6,7 @@ import HouseForm from './HouseForm';
 import axios from 'axios';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { FavsConsumer } from '../../providers/FavsProvider';
-
+import ScoresShow from '../scores/ScoresShow';
 const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
     const [showing, setShow] = useState(false)
     const [editing, setEdit] = useState(false)
@@ -111,6 +111,9 @@ const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
                             Delete
                         </Button>
                         </Col>
+                </Row>
+                <Row>
+                    <ScoresShow userId={user.id} houseId={id}/>
                 </Row>
             </Container>
         </>

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {ScoreConsumer} from '../../providers/ScoreProvider';
 
-const ScoresForm = ({addScore, updateScore, id, candy, scary, comment, setScoreAdd, setScoreEdit}) => { 
-    const [score, setScore] = useState({candy: 0, scary: 0, comment: '')
+const ScoresForm = ({addScores, updateScore, id, candy, scary, comment, setAdd, setScoreEdit}) => { 
+    const [score, setScore] = useState({candy: 0, scary: 0, comment: ''})
     
     useEffect( () => {
         if (id) {
@@ -18,8 +18,8 @@ const ScoresForm = ({addScore, updateScore, id, candy, scary, comment, setScoreA
             updateScore(id)
             setScoreEdit(false)
         } else {
-            addScore(score)
-            setScoreAdd(false)
+            addScores(score)
+            setAdd(false)
         }
         setScore({candy: 0, scary: 0, comment: ''})
     }
@@ -94,6 +94,9 @@ const ScoresForm = ({addScore, updateScore, id, candy, scary, comment, setScoreA
                         onChange={(e) => setScore({...score, comment: e.target.value})}
                     />
                 </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         </>
     )
@@ -103,7 +106,7 @@ const ScoresForm = ({addScore, updateScore, id, candy, scary, comment, setScoreA
 
 const ConnectedScoresForm = (props) => (
     <ScoreConsumer>
-      { value => <ScoreForm {...props} {...value} />}
+      { value => <ScoresForm {...props} {...value} />}
     </ScoreConsumer>
 )
 
