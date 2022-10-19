@@ -6,10 +6,14 @@ import HouseForm from './HouseForm';
 import axios from 'axios';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { FavsConsumer } from '../../providers/FavsProvider';
+import { ScoreConsumer } from '../../providers/ScoreProvider';
+import Scores from '../scores/Scores';
+import ScoresForm from '../scores/ScoresForm';
 
-const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
+const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse, addScore }) => {
     const [showing, setShow] = useState(false)
     const [editing, setEdit] = useState(false)
+    const [addingScore, setScoreAdd] = useState(false)
 
     // const [house, setHouse] = useState({ 
     //     house_name: '',
@@ -82,7 +86,21 @@ const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
                         >
                             Add to Favorites
                         </Button>
-                        <Button>Rate</Button>
+                        <Button onClick={ () => setScoreAdd(true)}>
+                            Rate
+                        </Button>
+                        <Modal show={addingScore} onHide={() => setScoreAdd(false)}>
+                            <Modal.Header closeButton>
+                                <Modal.Body>
+                                    <ScoresForm 
+                                    addScore={addScore}
+                                    houseId={houseId}
+                                    setScoreAdd={setScoreAdd}
+                                    />
+                                </Modal.Body>
+                            </Modal.Header>
+                        </Modal>
+
                         <Button 
                             onClick={() => setEdit(true)}
                         >
@@ -112,6 +130,9 @@ const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse }) => {
                         </Button>
                         </Col>
                 </Row>
+                <Row>
+                    <Scores userId={user.id} houseId={houseId}/>
+                </Row>
             </Container>
         </>
     )
@@ -134,4 +155,10 @@ const ConnectedFavoriteProvider = (props) => (
       { value => <ConnectedAuthProvider {...props} {...value} />}
     </FavsConsumer>
 )
-export default ConnectedFavoriteProvider
+
+const ConnectedScoresProvider = (props) => (
+    <ScoreConsumer>
+        { value => < ConnectedFavoriteProvider {...props} {...value} /> }
+    </ScoreConsumer>
+)
+export default ConnectedScoresProvider;

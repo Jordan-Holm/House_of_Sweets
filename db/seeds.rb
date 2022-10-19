@@ -11,7 +11,7 @@ User.delete_all
         image: Faker::Avatar::image,
         password: "password",
         name: "test_name#{i}",
-        nickname: "test_user_name#{1}"
+        nickname: "test_user_name#{i}"
     )
     i++
 
@@ -22,8 +22,8 @@ User.delete_all
             address: Faker::Address.street_address,
             city: cities.sample,
             img: Faker::Avatar::image,
-            avg_candy: Faker::Number.decimal(l_digits: 2),
-            avg_scary: Faker::Number.decimal(l_digits: 2)
+            avg_candy: Faker::Number.decimal(l_digits: 1),
+            avg_scary: Faker::Number.decimal(l_digits: 1)
         )
     end
 end

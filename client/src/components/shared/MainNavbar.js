@@ -102,7 +102,7 @@ const MainNavbar = ({ user, handleLogout }) => {
                             House of Sweets
                     </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav 
                         fluid="true"

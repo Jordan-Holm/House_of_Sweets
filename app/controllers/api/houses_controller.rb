@@ -58,6 +58,14 @@ class Api::HousesController < ApplicationController
     render json: { message: 'House deleted'}
   end
 
+  def candyAvg
+
+  end
+
+  def scaryAvg
+
+  end
+
   private 
 
     def house_params

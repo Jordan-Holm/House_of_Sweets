@@ -3,11 +3,15 @@ import { HouseConsumer } from '../../providers/HouseProvider';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HouseForm from './HouseForm';
+import ScoresForm from '../scores/ScoresForm';
+import Scores from '../scores/Scores';
 import axios from 'axios';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { FavsConsumer } from '../../providers/FavsProvider';
+import { ScoreConsumer } from '../../providers/ScoreProvider';
 
-const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse }) => {
+const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse, addScore }) => {
+  const [addingScore, setScoreAdd] = useState(false)
 
   return (
     
@@ -39,9 +43,20 @@ const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_can
               View
             </Button>
           </Link>
-          <Button>
+          <Button onClick={ () => setScoreAdd(true)}>
             Rate
           </Button>
+          <Modal show={addingScore} onHide={() => setScoreAdd(false)}>
+            <Modal.Header closeButton>
+              <Modal.Body>
+                <ScoresForm 
+                  addScore={addScore}
+                  houseId={id}
+                  setScoreAdd={setScoreAdd}
+                />
+              </Modal.Body>
+            </Modal.Header>
+          </Modal>
         </Card.Body>
       </Card>
     </>
@@ -60,10 +75,16 @@ const ConnectedAuthProvider = (props) =>  (
   </AuthConsumer>
 )
 
-const ConnectedFavoriteProfider = (props) => (
+const ConnectedFavoriteProvider = (props) => (
   <FavsConsumer>
     { value => <ConnectedAuthProvider {...props} {...value} />}
   </FavsConsumer>
 )
 
-export default ConnectedFavoriteProfider;
+const ConnectedScoresProvider = (props) => (
+  <ScoreConsumer>
+    { value => <ConnectedFavoriteProvider {...props} {...value} /> }
+  </ScoreConsumer>
+)
+
+export default ConnectedScoresProvider;
