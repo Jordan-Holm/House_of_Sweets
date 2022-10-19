@@ -3,7 +3,7 @@ class Api::FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
 
   def index
-    render json: @user.favorites.all
+    render json: @user.favorites
   end
 
   def show
