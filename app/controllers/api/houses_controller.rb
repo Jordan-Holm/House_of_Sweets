@@ -10,12 +10,40 @@ class Api::HousesController < ApplicationController
   end
 
   def create
-    @house = House.new(house_params)
-    if @house.save 
-      render json: @house
+    @house = House.new()
+    @house.house_name = params[:house_name]
+    @house.address = params[:address]
+    @house.city = params[:city]
+    @house.img = params[:img]
+    
+    file = params[:file]
+
+    if file && file != '' && file != "undefined"
+      begin
+        ext = File.extname(file.tempfile)
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+        @house.img = cloud_image['secure_url']
+        if @house.save
+          render json: @house
+        else
+          render json: { errors: @house.errors.full_messages }, status: 422
+        end
+      rescue => e
+        render json: { errros: e }, status: 422
+      end
     else
-      render json: { errors: @house.errors }, status: :unprocessable_entity
+      if @house.save
+        render json: @house
+      else
+        render json: { errors: @house.errors.full_messages }, status: 422
+      end
     end
+    
+    # if @house.save
+    #   render json: @house
+    # else 
+    #   render json: { errors: @house.errors }, status: :unprocessable_entity
+    # end
   end
 
   def update
@@ -29,7 +57,7 @@ class Api::HousesController < ApplicationController
       begin
         ext = File.extname(file.tempfile)
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
-        @house.image = cloud_image['secure_url']
+        @house.img = cloud_image['secure_url']
         if @house.save
           render json: @house
         else
@@ -69,7 +97,7 @@ class Api::HousesController < ApplicationController
   private 
 
     def house_params
-      params.require(:house).permit(:house_name, :address, :city, :img, :avg_candy, :avg_scary )
+      params.require(:house).permit(:house_name, :address, :city, :img, :avg_candy, :avg_scary, :file )
     end
 
     def set_house

@@ -20,7 +20,7 @@ const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, add
     }
   }, [])
 
-  const defautlImg = "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+  const defaultImg = "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
   const handleFileUpdate = (fileItems) => {
     if (fileItems.length !== 0) {
       setFile(fileItems)
@@ -40,7 +40,7 @@ const HouseForm = ({ addHouse, updateHouse, setAdd, setEdit, id, house_name, add
       setEdit(false)
     } else {
       if (house.img === ''){
-        const newHouse = { ...house, img: defautlImg}
+        const newHouse = { ...house, img: defaultImg}
         addHouse(newHouse)
       } else {
         addHouse(house)
