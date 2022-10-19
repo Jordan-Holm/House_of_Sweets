@@ -2,21 +2,63 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ListGroup, Button, Card, Modal, Container, Row, Col,  Image } from 'react-bootstrap';
 import { ScoreConsumer } from '../../providers/ScoreProvider';
+import { AuthConsumer } from '../../providers/AuthProvider';
 
-const ScoresShow = ({ id, deleteScores, userId, houseId, candy, scary, comment }) => {
-  const [user, setUser] = useState({ 
+import ScoresForm from './ScoresForm';
+
+const ScoresShow = ({ id, deleteScore, updateScore, user, user_id, houseId, candy, scary, comment }) => {
+  const [userDb, setUser] = useState({ 
     nickname: '',
   })
+  const [editing, setScoreEdit] = useState(false)
   
   useEffect( () => {
-    axios.get(`/api/users/${userId}`)
+    axios.get(`/api/users/${user_id}`)
       .then( res => setUser( res.data ))
       .catch( err => console.log(err))
   }, [] )
 
+  const checkForUser = () => {
+    const currentUser = user.id
+    if (user_id === currentUser) {
+      return (
+        <>
+          <Button
+            onClick={ () => setScoreEdit(true) }
+          >
+            Edit
+          </Button>
+          <Modal show={editing} onHide={() => setScoreEdit(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Update House</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <ScoresForm 
+                updateScore={updateScore} 
+                setScoreEdit={setScoreEdit} 
+                id={id}
+                houseId={houseId}
+                candy={candy}
+                scary={scary}
+                comment={comment}
+              />
+            </Modal.Body>
+          </Modal>
+
+          <Button
+            variant='danger'
+            onClick={ () => deleteScore(houseId, id) }  
+          >
+          X
+          </Button> 
+        </>
+      )
+    }
+  }
+
   const { 
     nickname
-  } = user 
+  } = userDb 
   return (
     <>
       {/* <ListGroup.Item>
@@ -30,6 +72,7 @@ const ScoresShow = ({ id, deleteScores, userId, houseId, candy, scary, comment }
       </ListGroup.Item> */}
       <Card style={{width: '12rem'}}>
       <Card.Body>
+        { checkForUser() } 
         <Card.Title>
           {nickname}'s Rating  
         </Card.Title> 
@@ -43,7 +86,7 @@ const ScoresShow = ({ id, deleteScores, userId, houseId, candy, scary, comment }
         </ListGroup>
         <Card.Text>
           {comment}
-        </Card.Text>   
+        </Card.Text>  
       </Card.Body>
       </Card>
     </>
@@ -56,4 +99,10 @@ const ConnectedScoresShow = (props) => (
   </ScoreConsumer>
 )
 
-export default ConnectedScoresShow;
+const ConnectedAuthScores = (props) => (
+  <AuthConsumer>
+    { value => <ConnectedScoresShow {...value} {...props} />}
+  </AuthConsumer>
+)
+
+export default ConnectedAuthScores;

@@ -3,7 +3,7 @@ class Api::ScoresController < ApplicationController
   before_action :set_score, only: [:show, :update, :destroy]
 
   def index
-    render json: @house.score.all
+    render json: @house.scores
   end
 
   def show
@@ -11,7 +11,8 @@ class Api::ScoresController < ApplicationController
   end
 
   def create
-    @score = @house.score.new(score_params)
+    @score = @house.scores.new(score_params)
+    @score.user_id = current_user.id
     if @score.save
       render json: @score
     else
@@ -35,11 +36,11 @@ class Api::ScoresController < ApplicationController
 
   private
     def score_params
-      params.require(:candy, :scary, :comment)
+      params.require(:score).permit(:candy, :scary, :comment)
     end
 
     def set_score
-      @score = @house.score.find(params[:id])
+      @score = @house.scores.find(params[:id])
     end
 
     def set_parent

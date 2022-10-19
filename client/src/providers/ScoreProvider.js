@@ -14,14 +14,13 @@ const ScoreProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
-  const addScores = (ids) => {
-    console.log()
-    axios.post(`/api/houses/${ids.houseId}/scores`, { user_id: ids.userId, house_id: ids.houseId })
+  const addScore = (houseId, score) => {
+    axios.post(`/api/houses/${houseId}/scores`, { score })
       .then( res => setScores([...scores, res.data]))
       .catch( err => console.log(err) )
   }
 
-  const updateScores = (houseId, id, score) => {
+  const updateScore = (houseId, id, score) => {
     axios.put(`/api/houses/${houseId}/scores/${id}`, { score })
       .then( res => {
         const newUpdatedScores = scores.map( e => {
@@ -36,7 +35,7 @@ const ScoreProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
-  const deleteScores = (houseId, id) => {
+  const deleteScore = (houseId, id) => {
     axios.delete(`/api/houses/${houseId}/scores/${id}`)
       .then( res => setScores( scores.filter( e => e.id !== id )))
       .catch( err => console.log(err))
@@ -46,9 +45,9 @@ const ScoreProvider = ({ children }) => {
     <ScoreContext.Provider value={{
       scores,
       getAllScores,
-      addScores,
-      updateScores, 
-      deleteScores,
+      addScore,
+      updateScore, 
+      deleteScore,
     }}>
       { children }
     </ScoreContext.Provider>
