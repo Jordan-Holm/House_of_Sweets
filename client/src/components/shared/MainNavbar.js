@@ -41,7 +41,7 @@ const MainNavbar = ({ user, handleLogout }) => {
                                 height="25px"
                                 src={user.image}
                             />
-                            {user.nickname}
+                            My Profile
                         </Nav.Link>
                     </OverlayTrigger>
                     <Button 
