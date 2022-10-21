@@ -10,7 +10,7 @@ import { ScoreConsumer } from '../../providers/ScoreProvider';
 import Scores from '../scores/Scores';
 import ScoresForm from '../scores/ScoresForm';
 
-const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse, addScore }) => {
+const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
     const [showing, setShow] = useState(false)
     const [editing, setEdit] = useState(false)
     const [addingScore, setScoreAdd] = useState(false)
@@ -31,6 +31,44 @@ const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse, addScore }) 
     //       .then( res => setHouse( res.data ))
     //       .catch( err => console.log(err))
     //   }, [] )
+
+    useEffect(() => {
+        const getAverage = async() => {
+          await candyAverage(houseId);
+          await scaryAverage(houseId);
+        }
+        getAverage()
+      }, [])
+
+    const [candyAvg, setCandyAvg] = useState(1)
+
+    const candyAverage = (houseId) => {
+        axios.get(`/api/houses/${houseId}/candyAverage`)
+        .then( res => {
+            if (typeof res.data == "number") {
+            setCandyAvg(res.data)
+            }
+            else {
+            setCandyAvg("Not Rated")
+            }
+        })
+        .catch( err => console.log(err) )
+    }
+
+    const [scaryAvg, setScaryAvg] = useState(1)
+
+    const scaryAverage = (id) => {
+        axios.get(`/api/houses/${id}/scaryAverage`)
+        .then( res => {
+            if (typeof res.data == "number") {
+                setScaryAvg(res.data)
+            }
+            else {
+                setScaryAvg("Not Rated")
+            }
+        })
+        .catch( err => console.log(err) )
+    }
 
     return (
         <>
@@ -77,9 +115,9 @@ const HouseDetail = ({ id, user, addFavs, deleteHouse, updateHouse, addScore }) 
                         <br />
                         City: {city}
                         <br />
-                        Avg_candy: {avg_candy}
+                        Avg_candy: {candyAvg}
                         <br />
-                        Avg_scary: {avg_scary}
+                        Avg_scary: {scaryAvg}
                         <br/>
                         <Button
                             onClick={() => addFavs({ houseId: houseId, userId: user.id })}

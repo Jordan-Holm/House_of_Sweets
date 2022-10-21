@@ -9,7 +9,7 @@ import HouseDetail from "./components/houses/HouseDetail";
 import Profile from "./components/shared/profile/Profile";
 
 import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+import Login from "./components/auth/login/Login";
 import FetchUser from "./components/auth/FetchUser";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,8 +23,8 @@ const App = () => (
           <Route path="/register" element={ <Register />} />
           <Route path='/houses' element={ <Houses />} />
           <Route path='/houses/:houseId' element={ <HouseDetail />} />
-          <Route path='/login' element={ <Login />} />
           <Route path="/profile" element={ <Profile />} />
+          <Route path='/login' element={ <Login />} />
           <Route path="/*" element={ <Nomatch /> } />
         </Routes>
       </>

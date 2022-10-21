@@ -12,7 +12,44 @@ import { ScoreConsumer } from '../../providers/ScoreProvider';
 
 const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse, addScore }) => {
   const [addingScore, setScoreAdd] = useState(false)
+  useEffect(() => {
+    const getAverage = async() => {
+      await candyAverage(id);
+      await scaryAverage(id);
+    }
+    getAverage()
+  }, [])
 
+  const [candyAvg, setCandyAvg] = useState(1)
+
+  const candyAverage = (id) => {
+    axios.get(`/api/houses/${id}/candyAverage`)
+      .then( res => {
+        if (typeof res.data == "number") {
+          setCandyAvg(res.data)
+        }
+        else {
+          setCandyAvg("Not Rated")
+        }
+      })
+      .catch( err => console.log(err) )
+  }
+
+  const [scaryAvg, setScaryAvg] = useState(1)
+
+  const scaryAverage = (id) => {
+    axios.get(`/api/houses/${id}/scaryAverage`)
+      .then( res => {
+        if (typeof res.data == "number") {
+          setScaryAvg(res.data)
+        }
+        else {
+          setScaryAvg("Not Rated")
+        }
+      })
+      .catch( err => console.log(err) )
+  }
+  
   return (
     
     <>
@@ -22,8 +59,8 @@ const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_can
           <Card.Title>{house_name}</Card.Title>
           <Card.Subtitle>City: {city}</Card.Subtitle>
           <ListGroup variant='flush'>
-            <ListGroup.Item>Candy Rating: {avg_candy}</ListGroup.Item>
-            <ListGroup.Item>Scary Rating: {avg_scary}</ListGroup.Item>
+            <ListGroup.Item>Candy Rating: {candyAvg}</ListGroup.Item>
+            <ListGroup.Item>Scary Rating: {scaryAvg}</ListGroup.Item>
           </ListGroup>
           <Link 
             to={`/houses/${id}`}
