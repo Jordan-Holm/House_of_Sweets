@@ -86,12 +86,27 @@ class Api::HousesController < ApplicationController
     render json: { message: 'House deleted'}
   end
 
-  def candyAvg
+  def candyAverage
+    # @house_candy_average = House.where(:House.candyAvg)
+    #     .joins(:scores)
+    #     .where(scores: {candy})
 
+    # House.candyAvg
+    @house = House.find(params[:house_id])
+    if (@house.scores.any?)
+      render json: @house.scores.average(:candy).to_i
+    else
+      render json: { errors: "Not Rated Yet"}
+    end
   end
 
-  def scaryAvg
-
+  def scaryAverage
+    @house = House.find(params[:house_id])
+    if (@house.scores.any?)
+      render json: @house.scores.average(:scary).to_i
+    else
+      render json: { errors: "Not Rated Yet"}
+    end
   end
 
   private 

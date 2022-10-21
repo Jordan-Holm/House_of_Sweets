@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
 
     resources :houses do
+      get '/candyAverage', to: 'houses#candyAverage'
+      get '/scaryAverage', to: 'houses#scaryAverage'
       resources :scores
     end
   end

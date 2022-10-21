@@ -1,15 +1,15 @@
-import { AuthConsumer } from "../../providers/AuthProvider";
+import { AuthConsumer } from "../../../providers/AuthProvider";
+import Flash from "../../shared/Flash";
 import { useState } from "react";
-import Flash from "../shared/Flash";
 
-const Login = ({ handleLogin, errors, setErrors }) => {
+const LoginFeat = ({ handleLogin, errors, setErrors }) => {
     const [user, setUser] = useState({ email: '', password: '' })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         handleLogin(user)
     }
-    
+
     return (
         <>
             { errors ?
@@ -20,6 +20,7 @@ const Login = ({ handleLogin, errors, setErrors }) => {
                 />
             : null
             }
+            
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
@@ -46,10 +47,10 @@ const Login = ({ handleLogin, errors, setErrors }) => {
     )
 }
 
-const ConnectedLogin = (props) => (
+const ConnectedAuthProvider = (props) => {
     <AuthConsumer>
-        { value => <Login {...props} {...value} />}
+        { value => <LoginFeat {...props} {...value} />}
     </AuthConsumer>
-)
+}
 
-export default ConnectedLogin;
+export default ConnectedAuthProvider;

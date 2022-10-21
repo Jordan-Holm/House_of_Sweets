@@ -1,7 +1,10 @@
+import FilteredHouses from "./FilteredHouse";
+import HomeHeader from "./HomeHeader";
 
 const Home = () => (
     <>
-        <h1>HOME PAGE</h1>
+        <HomeHeader />
+        <FilteredHouses />
     </>
 )
 

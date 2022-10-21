@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError }  from 'axios';
+
 import { useNavigate } from 'react-router-dom';
 
 export const HouseContext = React.createContext();
@@ -9,6 +10,36 @@ export const HouseConsumer = HouseContext.Consumer;
 const HouseProvider = ({ children }) => {
   const [houses, setHouses] = useState([])
   const navigate = useNavigate()
+
+  const [candyAvg, setCandyAvg] = useState(1)
+  
+  const candyAverage = (id) => {
+    axios.get(`/api/houses/${id}/candyAverage`)
+    .then( res => {
+      if (typeof res.data == "number") {
+        setCandyAvg(res.data)
+      }
+      else {
+        setCandyAvg("Not Rated")
+      }
+    })
+    .catch( err => console.log(err) )
+  }
+
+  const [scaryAvg, setScaryAvg] = useState(1)
+
+  const scaryAverage = (id) => {
+    axios.get(`/api/houses/${id}/scaryAverage`)
+      .then( res => {
+        if (typeof res.data == "number") {
+          setScaryAvg(res.data)
+        }
+        else {
+          setScaryAvg("Not Rated")
+        }
+      })
+      .catch( err => console.log(err) )
+  }
 
   const getAllHouses = () => {
     axios.get('/api/houses')
@@ -66,7 +97,11 @@ const HouseProvider = ({ children }) => {
       addHouse, 
       updateHouse,
       deleteHouse,
-      getAllHouses
+      getAllHouses,
+      candyAverage,
+      candyAvg,
+      scaryAverage,
+      scaryAvg
     }}>
       { children }
     </HouseContext.Provider>

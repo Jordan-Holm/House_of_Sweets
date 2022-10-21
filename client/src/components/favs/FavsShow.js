@@ -20,6 +20,44 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
       .catch( err => console.log(err))
   }, [] )
 
+  useEffect(() => {
+    const getAverage = async() => {
+      await candyAverage(house_id);
+      await scaryAverage(house_id);
+    }
+    getAverage()
+  }, [])
+
+  const [candyAvg, setCandyAvg] = useState(1)
+
+    const candyAverage = (house_id) => {
+      axios.get(`/api/houses/${house_id}/candyAverage`)
+        .then( res => {
+          if (typeof res.data == "number") {
+            setCandyAvg(res.data)
+          }
+          else {
+            setCandyAvg("Not Rated")
+          }
+      })
+        .catch( err => console.log(err) )
+    }
+
+    const [scaryAvg, setScaryAvg] = useState(1)
+
+    const scaryAverage = (id) => {
+      axios.get(`/api/houses/${id}/scaryAverage`)
+        .then( res => {
+          if (typeof res.data == "number") {
+            setScaryAvg(res.data)
+          }
+          else {
+            setScaryAvg("Not Rated")
+          }
+        })
+        .catch( err => console.log(err) )
+    }
+
   const { 
     house_name,
     address,
@@ -37,8 +75,8 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
           <Card.Title>{house_name}</Card.Title>
           <Card.Subtitle>City: {city}</Card.Subtitle>
           <ListGroup variant='flush'>
-            <ListGroup.Item>Candy Rating: {avg_candy}</ListGroup.Item>
-            <ListGroup.Item>Scary Rating: {avg_scary}</ListGroup.Item>
+            <ListGroup.Item>Candy Rating: {candyAvg}</ListGroup.Item>
+            <ListGroup.Item>Scary Rating: {scaryAvg}</ListGroup.Item>
           </ListGroup>
           <ButtonGroup >
             <Button 
