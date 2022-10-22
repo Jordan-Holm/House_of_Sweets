@@ -81,6 +81,12 @@ const MainNavbar = ({ user, handleLogout }) => {
                     >
                         Create An Account
                     </Nav.Link>
+                    <Nav.Link 
+                        href={"/teams"}
+                        style={{ color: linkColor }}
+                    >
+                        Teams
+                    </Nav.Link>
                 </>
             )
         }
