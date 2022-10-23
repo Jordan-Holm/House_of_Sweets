@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ListGroup, Button, ButtonGroup, Card, Modal, Container, Row, Col, Image } from 'react-bootstrap';
 import { FavsConsumer } from '../../providers/FavsProvider';
+import { mainP } from '../shared/Style';
 
 const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
   const [house, setHouse] = useState({ 
@@ -69,15 +70,26 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
   return (
     <>
       <ListGroup.Item>
-        <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={img} width='200px' height='200px' />
+        <Card style={{ width: '20rem' }}>
+        <Card.Img variant="top" src={img} width='200px' height='175px' />
         <Card.Body>
-          <Card.Title>{house_name}</Card.Title>
-          <Card.Subtitle>City: {city}</Card.Subtitle>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Candy Rating: {candyAvg}</ListGroup.Item>
-            <ListGroup.Item>Scary Rating: {scaryAvg}</ListGroup.Item>
-          </ListGroup>
+          <>{house_name}</>
+                <Row>
+                  <Col>
+                      <mainP>{address}</mainP>
+                  </Col>
+                  <Col>
+                    <p>SR: {scaryAvg}</p>
+                  </Col>
+                </Row>
+                  <Row>
+                    <Col>
+                      <mainP>{city}</mainP>
+                    </Col>
+                    <Col>
+                      <p>CR: {candyAvg}</p>
+                    </Col>
+                  </Row>
           <ButtonGroup >
             <Button 
                 variant="primary" 

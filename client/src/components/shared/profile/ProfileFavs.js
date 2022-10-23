@@ -1,10 +1,13 @@
 import Favs from "../../favs/Favs";
+import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image, Col, Row, Card } from "react-bootstrap";
 
 const ProfileFavs = () => {
 
     return (
         <>
-            <Favs />
+            <Card style={{width: '65rem', height: '18rem'}}>
+                <Favs />
+            </Card>
         </>
     )
 }

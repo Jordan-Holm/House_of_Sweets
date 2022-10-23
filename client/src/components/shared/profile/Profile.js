@@ -1,11 +1,25 @@
+import { Container } from "react-bootstrap";
 import { AuthConsumer } from "../../../providers/AuthProvider";
 import ProfileHeader from "./ProfileHeader";
 import ProfileFavs from "./ProfileFavs";
+import ProfileInfo from "./ProfileInfo";
 
-const Profile = ({}) => (
+const Profile = () => (
     <>
-        <ProfileHeader />
-        <ProfileFavs />
+        <style type='text/css'>
+            {`
+            .profileContainer{
+                align-content: center;
+                background-color: #000000;
+                }
+            `}
+            </style>
+
+        <Container className='profileContainer'>
+            <ProfileHeader />
+            <ProfileInfo />
+            <ProfileFavs />
+        </Container>
     </>
 )
 
