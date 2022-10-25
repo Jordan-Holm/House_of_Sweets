@@ -5,6 +5,16 @@ import { ScoreConsumer } from '../../providers/ScoreProvider';
 import { AuthConsumer } from '../../providers/AuthProvider';
 
 import ScoresForm from './ScoresForm';
+import styled from 'styled-components';
+
+const scoreContainer = styled.div`
+  background-color: blueviolet;
+  `
+
+const CardContainer = styled.div`
+  background-color: #38F224;
+  padding: 0%;
+  `
 
 const ScoresShow = ({ id, deleteScore, updateScore, user, user_id, houseId, candy, scary, comment }) => {
   const [userDb, setUser] = useState({ 
@@ -23,7 +33,7 @@ const ScoresShow = ({ id, deleteScore, updateScore, user, user_id, houseId, cand
     if (user_id === currentUser) {
       return (
         <>
-          <Button
+          <Button as={scoreContainer}
             onClick={ () => setScoreEdit(true) }
           >
             Edit
@@ -70,24 +80,27 @@ const ScoresShow = ({ id, deleteScore, updateScore, user, user_id, houseId, cand
           delete
         </Button>
       </ListGroup.Item> */}
-      <Card style={{width: '12rem'}}>
-      <Card.Body>
-        { checkForUser() } 
-        <Card.Title>
-          {nickname}'s Rating  
-        </Card.Title> 
-        <ListGroup variant="flush">
-            <ListGroup.Item>
-              candy: {candy}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              scary: {scary}
-            </ListGroup.Item>
-        </ListGroup>
-        <Card.Text>
-          {comment}
-        </Card.Text>  
-      </Card.Body>
+
+      <Card as={CardContainer}style={{width: '12rem'}}>
+        
+          <Card.Body>
+            { checkForUser() } 
+            <Card.Title>
+              {nickname}'s Rating  
+            </Card.Title> 
+            <ListGroup variant="flush">
+                <ListGroup.Item as={CardContainer}>
+                  candy: {candy}
+                </ListGroup.Item>
+                <ListGroup.Item as={CardContainer}>
+                  scary: {scary}
+                </ListGroup.Item>
+            </ListGroup>
+            <Card.Text>
+              {comment}
+            </Card.Text>  
+          </Card.Body>
+        
       </Card>
     </>
   )
