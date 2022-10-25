@@ -9,6 +9,14 @@ import { FavsConsumer } from '../../providers/FavsProvider';
 import { ScoreConsumer } from '../../providers/ScoreProvider';
 import Scores from '../scores/Scores';
 import ScoresForm from '../scores/ScoresForm';
+import './HouseStyle.css';
+import styled from 'styled-components';
+
+
+const houseContainer = styled.div`
+  background-color: blueviolet;
+  `
+
 
 const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
     const [showing, setShow] = useState(false)
@@ -72,10 +80,9 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
 
     return (
         <>
-            <Container>
-                <h1>{house_name}</h1>
-            </Container>
-            <Container>
+        
+            <Container className='houseBody'>
+                <Row><h1>{house_name}</h1></Row>
                 <Row>
                     <Col>
                         <Image src={img} width='450px' height='250px' 
@@ -112,6 +119,7 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
                 <Row>
                     <Col>
                         Address: {address}
+                        
                         <br />
                         City: {city}
                         <br />
@@ -119,12 +127,15 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
                         <br />
                         Avg_scary: {scaryAvg}
                         <br/>
-                        <Button
-                            onClick={() => addFavs({ houseId: houseId, userId: user.id })}
-                        >
+                        
+                        <Button as={houseContainer}
+
+                            onClick={() => addFavs({ houseId: houseId, userId: user.id })}>
                             Add to Favorites
                         </Button>
-                        <Button onClick={ () => setScoreAdd(true)}>
+                        <Button as={houseContainer}
+                            className='rateButton'
+                            onClick={ () => setScoreAdd(true)}>
                             Rate
                         </Button>
                         <Modal show={addingScore} onHide={() => setScoreAdd(false)}>
@@ -139,7 +150,7 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
                             </Modal.Header>
                         </Modal>
 
-                        <Button 
+                        <Button as={houseContainer}
                             onClick={() => setEdit(true)}
                         >
                             Edit
@@ -161,7 +172,7 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
                                 />
                             </Modal.Body>
                         </Modal>
-                        <Button
+                        <Button as={houseContainer}
                             onClick={() => deleteHouse(houseId)}
                         >
                             Delete
