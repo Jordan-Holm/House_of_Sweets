@@ -6,11 +6,12 @@ const ProfileFavs = () => {
     return (
         <>
             <Card style={{width: '65rem', 
-                height: '18rem', 
-                top: '3rem',
+                height: '20rem', 
+                top: '1rem',
                 marginLeft: 'auto',
                 marginRight: 'auto' 
                 }}>
+                <Card.Header>Favorites</Card.Header>
                 <Favs />
             </Card>
         </>

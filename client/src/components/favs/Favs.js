@@ -11,7 +11,6 @@ const Favs = ({ user, addFavs, getAllFavs, updateFavs, deleteFavs, favorites }) 
 
   return (
     <>
-      <h4>Favorites</h4>
       <FavsList 
         favorites={favorites}
         userId={user.id}
