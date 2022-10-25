@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-export const mainP = styled.p`
+export const MainP = styled.p`
    font-size: 12px;
 `;

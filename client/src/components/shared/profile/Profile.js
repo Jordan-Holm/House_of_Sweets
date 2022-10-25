@@ -6,20 +6,9 @@ import ProfileInfo from "./ProfileInfo";
 
 const Profile = () => (
     <>
-        <style type='text/css'>
-            {`
-            .profileContainer{
-                align-content: center;
-                background-color: #000000;
-                }
-            `}
-            </style>
-
-        <Container className='profileContainer'>
-            <ProfileHeader />
-            <ProfileInfo />
-            <ProfileFavs />
-        </Container>
+        <ProfileHeader />
+        <ProfileInfo />
+        <ProfileFavs />
     </>
 )
 

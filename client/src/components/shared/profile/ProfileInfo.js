@@ -2,7 +2,12 @@ import { AuthConsumer } from "../../../providers/AuthProvider";
 import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image, Col, Row, Card } from "react-bootstrap";
 
 const ProfileInfo = ({user}) => (
-    <Card style={{width: '65rem', height: '18rem'}}>
+    <Card style={{
+        width: '65rem', 
+        height: '18rem',
+        marginLeft: 'auto',
+        marginRight: 'auto' 
+        }}>
         <Row>
             <Col> 
                 <Image
