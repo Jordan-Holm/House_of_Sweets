@@ -4,6 +4,7 @@ import { ListGroup, Button, ButtonGroup, Card, Modal, Container, Row, Col, Image
 import { Link } from 'react-router-dom';
 import { FavsConsumer } from '../../providers/FavsProvider';
 import { MainP } from '../shared/Style';
+import './FavsStyle.css'
 
 const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
   const [house, setHouse] = useState({ 
@@ -78,7 +79,9 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
         onClick={() => setShow(true)}
         >
           <Card.Img variant="top" src={img} width='200px' height='175px' />
-          <Card.Body>
+          <Card.Body 
+            className='favsBody'
+            >
             <Row>
               <Col>
                 <Row>
