@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ListGroup, Button, ButtonGroup, Card, Modal, Container, Row, Col, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FavsConsumer } from '../../providers/FavsProvider';
+import { MainP } from '../shared/Style';
 
 const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
   const [house, setHouse] = useState({ 
@@ -69,83 +71,91 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
   return (
     <>
       <ListGroup.Item>
-        <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={img} width='200px' height='200px' />
-        <Card.Body>
-          <Card.Title>{house_name}</Card.Title>
-          <Card.Subtitle>City: {city}</Card.Subtitle>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Candy Rating: {candyAvg}</ListGroup.Item>
-            <ListGroup.Item>Scary Rating: {scaryAvg}</ListGroup.Item>
-          </ListGroup>
-          <ButtonGroup >
-            <Button 
-                variant="primary" 
-                onClick={() => setShow(true)}
-            >
-              View
-            </Button>
-            <Button 
-              variant="danger" 
-              onClick={() => deleteFavs(userId, id)}
-            >
-              X
-            </Button>
-          </ButtonGroup>
-          {/* <ListGroup>
-          
-            <Button 
-              variant="primary" 
-              onClick={() => setShow(true)}
-            >
-              View
-            </Button>
-            <Button 
-              variant="danger" 
-              onClick={() => deleteFavs(userId, id)}
-            >
-              X
-            </Button>
-          </ListGroup> */}
-
-          <Modal show={showing} onHide={() => setShow(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>{house_name}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Container>
+        <Card 
+        style={{ width: '20rem', 
+          height: '17rem'
+        }}
+        onClick={() => setShow(true)}
+        >
+          <Card.Img variant="top" src={img} width='200px' height='175px' />
+          <Card.Body>
+            <Row>
+              <Col>
                 <Row>
-                  <Col>
-                    <Row>
-                    Address: {address}
-                    </Row>
-                    <Row>
-                    City: {city}
-                    </Row>
-                    <Row>
-                    Avg_candy: {avg_candy}
-                    </Row>
-                    <Row>
-                    Avg_scary: {avg_scary}
-                    </Row>
-                    <Row>
-                      <Button 
-                        variant='danger'
-                        onClick={() => deleteFavs(userId, id)}
-                      >
-                        Unfavorite
-                      </Button>
-                    </Row>
-                  </Col>
-                  <Col>
-                    <Image src={img} width='200px' height='200px' />
-                  </Col>
+                  <MainP>
+                    <b>{house_name}</b>
+                    <br/>
+                    <b>{address}</b>
+                    <br/>
+                    {city}
+                  </MainP>
                 </Row>
-              </Container>
-            </Modal.Body>
-          </Modal>
-        </Card.Body>
-      </Card>
+              </Col>
+              <Col>
+                <MainP>
+                  SR: {scaryAvg}
+                  <br/>
+                  CR: {candyAvg}
+                </MainP>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+
+        <Modal show={showing} onHide={() => setShow(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>{house_name}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col>
+                  <Row>
+                    Address: {address}
+                  </Row>
+                  <Row>
+                    City: {city}
+                  </Row>
+                  <Row>
+                    Avg_candy: {avg_candy}
+                  </Row>
+                  <Row>
+                    Avg_scary: {avg_scary}
+                  </Row>
+                  <Row>
+                    <Link 
+                      to={`/houses/${id}`}
+                      state={{
+                      address,
+                      city,
+                      img,
+                      house_name,
+                      avg_candy,
+                      avg_scary,
+                      }}
+                    >
+                      <Button 
+                        variant="primary"
+                        house_id={house_id}
+                      >
+                        View Page
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant='danger'
+                      onClick={() => deleteFavs(userId, id)}
+                    >
+                      Unfavorite
+                    </Button>
+                  </Row>
+                </Col>
+                <Col>
+                  <Image src={img} width='200px' height='200px' />
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+        </Modal>
       </ListGroup.Item>
     </>
   )

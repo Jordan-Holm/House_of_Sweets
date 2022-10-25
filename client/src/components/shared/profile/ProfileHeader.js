@@ -1,8 +1,8 @@
 import { AuthConsumer } from "../../../providers/AuthProvider";
 
-const ProfileHeader = ({user}) => (
+const ProfileHeader = () => (
     <>
-        <h1>{user.nickname}'s Profile</h1>
+        <h1>My Profile</h1>
     </>
 )
 

@@ -1,10 +1,13 @@
+import { Container } from "react-bootstrap";
 import { AuthConsumer } from "../../../providers/AuthProvider";
 import ProfileHeader from "./ProfileHeader";
 import ProfileFavs from "./ProfileFavs";
+import ProfileInfo from "./ProfileInfo";
 
-const Profile = ({}) => (
+const Profile = () => (
     <>
         <ProfileHeader />
+        <ProfileInfo />
         <ProfileFavs />
     </>
 )
