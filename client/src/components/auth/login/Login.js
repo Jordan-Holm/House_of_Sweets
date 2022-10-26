@@ -1,10 +1,10 @@
 import { AuthConsumer } from "../../../providers/AuthProvider";
 import { useState } from "react";
 import Flash from "../../shared/Flash";
-import LoginImg from "./LoginImg";
-
 import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import ghostImg from './White & Orange Simple Hand Drawn Ghost Character Halloween Logo (1).png'
 
 const Login = ({ handleLogin, errors, setErrors }) => {
     const [user, setUser] = useState({ email: '', password: '' })
@@ -13,93 +13,80 @@ const Login = ({ handleLogin, errors, setErrors }) => {
         e.preventDefault()
         handleLogin(user)
     }
+
+    const imageContainer = styled.div `
+        background-color: #cc5803;
+    `
+    const imageObject = styled.image `
+        padding: 0%;
+        margin: -0% 0% 0% 0%;
+        scale: 85%;
+    `
+
+    const imageTextRow = styled.div `
+        margin: -10% 5% 10% 5%;
+        color: #000000;
+    `
+
+    const loginBody = styled.div `
+        background-color: white;
+        color: black;
+    `
+
+    const loginShow = styled.div `
+        text-align: right;
+        padding-right: 5%;
+    `
+
+    const loginForm = styled.div `
+        width: 90%;
+        padding: 10% 10% 10% 10%;
+        border-radius: 2%;
+    `
+
+    const loginEmail = styled.div `
+        padding: 5% 0% 5% 0%;
+    `
     
+    const loginPassword = styled.div `
+        padding-bottom: 5%;
+    `
+
+    const loginRemember = styled.div `
+        padding-bottom: 15%;
+    `
+    const loginButton = styled.div `
+        background-color: blueviolet;
+        border-color: blueviolet;
+    `
+
+    const register = styled.div `
+        text-align: center;
+    `
     return (
         <>
-            <style type="text/css">
-                {`
-                    .loginShow {
-                        text-align: right;
-                        padding-right: 5%;
-                    }
-
-                    .loginForm {
-                        width: 80%;
-                        padding: 10% 0% 10% 0%;
-                    }
-
-                    .loginEmail {
-                        padding: 5% 0% 5% 0%;
-                    }
-
-                    .loginPassword {
-                        padding-bottom: 5%;
-                    }
-
-                    .loginRemember {
-                        padding-bottom: 15%;
-                    }
-
-                    .forgotPasswordText {
-                        color: gray;
-                    }
-
-                    .register {
-                        text-align: center;
-                    }
-
-                    
-                    .imageContainer  {
-                        align-content: center;
-                        background-color: #000000;
-                    }
-
-                    .imageObject {
-                        border-radius: 5% 10% 25% 10%;
-                        padding: 0%;
-                        margin: -15% 5% 0% -5%;
-                        scale: 65%;
-                    }
-
-                    .imageText {
-                        font-family: "Urbanist";
-                        color: #FF7F11;
-                    }
-
-                    .imageTextRow {
-                        margin: -20% 5% 0% 5%;
-
-                    }
-                `}
-            </style>
-
             <Row>
-                <Col className="imageContainer">
-                    <Row>
+                <Col as={imageContainer}>
+                    <Row as={imageObject}>
                         <Image 
-                            className="imageObject"
-                            src="https://images.unsplash.com/photo-1633380170808-9404cd630e82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+                            src={ghostImg}
                             alt="Ghost Image"
                         />
                     </Row>
-                    <Row className="imageTextRow">
-                        <h1
-                            className="imageText"
-                        >
+                    <Row as={imageTextRow}>
+                        <h1>
                             Find the sweetest home in the neighborhood
                         </h1>
                     </Row>
                 </Col>
-                <Col>
-                    <Row>
-                        <p
-                            className="loginShow"
-                        >
+                <Col as={loginBody}>
+                    <Row as={loginShow}>
+                        <p>
                             Login
                         </p>
                     </Row>
                     <Container
-                        className="loginForm"
+                        as={loginForm}
                     >
                         { errors ?
                             <Flash 
@@ -119,7 +106,7 @@ const Login = ({ handleLogin, errors, setErrors }) => {
                         </Row>
                         <Row>
                             <Form onSubmit={handleSubmit}>
-                                <Form.Group className="loginEmail">
+                                <Form.Group as={loginEmail}>
                                     <Form.Label>Your Email</Form.Label>
                                     <Form.Control 
                                         type="email"
@@ -130,7 +117,7 @@ const Login = ({ handleLogin, errors, setErrors }) => {
                                         placeholder="Email"
                                     />
                                 </Form.Group>
-                                <Form.Group className="loginPassword">
+                                <Form.Group as={loginPassword}>
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control 
                                         type="password"
@@ -143,7 +130,7 @@ const Login = ({ handleLogin, errors, setErrors }) => {
                                 </Form.Group>
                                 <Row>
                                     <Col>
-                                        <Form.Group className="loginRemember">
+                                        <Form.Group as={loginRemember}>
                                             <Form.Check 
                                                 type="checkbox"
                                                 label="Remember me"
@@ -151,57 +138,23 @@ const Login = ({ handleLogin, errors, setErrors }) => {
                                         </Form.Group>
                                     </Col>
                                     <Col>
-                                        <Link
-                                            className="forgotPasswordText"
-                                        >
+                                        <Link>
                                             Forgot Password?
                                         </Link>
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Button type="submit">
+                                    <Button 
+                                        as={loginButton}
+                                        type="submit"
+                                    >
                                         Login
                                     </Button>
                                 </Row>
                             </Form>
                         </Row>
                     </Container>
-                    {/* <p>Login</p>
-
-                    { errors ?
-                        <Flash 
-                            variant={errors.variant}
-                            msg={errors.msg}
-                            setErrors={setErrors}
-                        />
-                    : null
-                    }
-                    <h2>Welcome Back to House of Sweets!</h2>
-                    <form onSubmit={handleSubmit}>
-                        <label>Your Email</label>
-                        <input 
-                            type='email'
-                            name='email'
-                            value={user.email}
-                            onChange={ (e) => setUser({ ...user, email: e.target.value })}
-                            required
-                            placeholder="Email"
-                        />
-                        <br />
-                        <label>Password</label>
-                        <input 
-                            type='password'
-                            name='password'
-                            value={user.password}
-                            onChange={ (e) => setUser({ ...user, password: e.target.value })}
-                            required
-                            placeholder="Password"
-                        />
-                        <br />
-                        <button type="submit">Submit</button>
-                    </form> */}
-
-                    <Row className="register">
+                    <Row as={register}>
                             <p>
                                 Don't have an account?&nbsp;
                                 <Link to="/register">

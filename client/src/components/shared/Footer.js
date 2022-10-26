@@ -4,7 +4,9 @@ const Footer = () => (
         <style type="text/css">{`
             .footer {
                 text-align: center;
-                font-size: small;
+                font-size: 70%;
+                color: white;
+                background-color: rgb(64, 63, 63);
             }
         `}
         </style>

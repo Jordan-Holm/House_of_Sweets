@@ -81,12 +81,6 @@ const MainNavbar = ({ user, handleLogout }) => {
                     >
                         Create An Account
                     </Nav.Link>
-                    <Nav.Link 
-                        href={"/teams"}
-                        style={{ color: linkColor }}
-                    >
-                        Teams
-                    </Nav.Link>
                 </>
             )
         }
@@ -126,6 +120,12 @@ const MainNavbar = ({ user, handleLogout }) => {
                             style={{ color: linkColor }}
                         >
                             Home
+                        </Nav.Link>
+                        <Nav.Link 
+                            href={"/teams"}
+                            style={{ color: linkColor }}
+                        >
+                            Team
                         </Nav.Link>
                         { correctNavItems() }
                     </Nav>
