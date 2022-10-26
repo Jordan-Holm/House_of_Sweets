@@ -3,8 +3,12 @@ import { useState } from "react";
 import Flash from "../../shared/Flash";
 import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
 import ghostImg from './White & Orange Simple Hand Drawn Ghost Character Halloween Logo (1).png'
+
+import { imageContainer, imageObject, imageTextRow, loginBody,
+    loginShow, loginForm, loginEmail, loginPassword, loginRemember,
+    loginButton, register 
+} from "../../shared/Style";
 
 const Login = ({ handleLogin, errors, setErrors }) => {
     const [user, setUser] = useState({ email: '', password: '' })
@@ -14,55 +18,6 @@ const Login = ({ handleLogin, errors, setErrors }) => {
         handleLogin(user)
     }
 
-    const imageContainer = styled.div `
-        background-color: #cc5803;
-    `
-    const imageObject = styled.image `
-        padding: 0%;
-        margin: -0% 0% 0% 0%;
-        scale: 85%;
-    `
-
-    const imageTextRow = styled.div `
-        margin: -10% 5% 10% 5%;
-        color: #000000;
-    `
-
-    const loginBody = styled.div `
-        background-color: white;
-        color: black;
-    `
-
-    const loginShow = styled.div `
-        text-align: right;
-        padding-right: 5%;
-    `
-
-    const loginForm = styled.div `
-        width: 90%;
-        padding: 10% 10% 10% 10%;
-        border-radius: 2%;
-    `
-
-    const loginEmail = styled.div `
-        padding: 5% 0% 5% 0%;
-    `
-    
-    const loginPassword = styled.div `
-        padding-bottom: 5%;
-    `
-
-    const loginRemember = styled.div `
-        padding-bottom: 15%;
-    `
-    const loginButton = styled.div `
-        background-color: blueviolet;
-        border-color: blueviolet;
-    `
-
-    const register = styled.div `
-        text-align: center;
-    `
     return (
         <>
             <Row>
