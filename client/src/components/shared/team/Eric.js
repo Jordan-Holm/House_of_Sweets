@@ -4,7 +4,7 @@ const Eric = ({  Link, id }) => {
         return (
             <>
                 <Card style={{ width: '12rem' }}>
-                    <Card.Img variant="top" src="https://media.istockphoto.com/photos/purple-grape-isolated-on-white-background-clipping-path-full-depth-of-picture-id1295773461?s=612x612" width='200px' height='200px' />
+                    <Card.Img variant="top" src="https://res.cloudinary.com/dgcjckeym/image/upload/v1666735491/CC3B5CB5-F643-41DA-9CDF-50CC2E69A5B9_tcp5pu.jpg" width='200px' height='200px' />
                     <Card.Body>
                     <Card.Title>Eric</Card.Title>
                         <Button href="https://github.com/PerkinsEric">Github</Button>
