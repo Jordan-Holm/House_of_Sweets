@@ -109,6 +109,10 @@ class Api::HousesController < ApplicationController
     end
   end
 
+  def randomhouse 
+    render json: House.all.sample 
+  end
+
   private 
 
     def house_params

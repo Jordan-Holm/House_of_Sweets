@@ -45,7 +45,7 @@ export const loginPassword = styled.div `
 export const loginRemember = styled.div `
    padding-bottom: 15%;
 `
-export const loginButton = styled.div `
+export const loginButton = styled.button `
    background-color: blueviolet;
    border-color: blueviolet;
 `
