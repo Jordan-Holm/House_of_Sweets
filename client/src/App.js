@@ -11,25 +11,33 @@ import Teams from './components/shared/team/Teams'
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login/Login";
 import FetchUser from "./components/auth/FetchUser";
-// import Andrew from './components/shared/team/TeamPage/AndrewPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Styled from 'styled-components'
 
+const AppContainer = Styled.div`
+  background-color: #1f1300;
+  color: white;
+  font-style: normal;
+  font-family: "Urbanist";
+`
 const App = () => (
   <>
     <MainNavbar />
     <FetchUser>
       <>
-        <Routes>
-          <Route path="/" element={ <Home /> } />
-          <Route path="/register" element={ <Register />} />
-          <Route path='/houses' element={ <Houses />} />
-          <Route path='/houses/:houseId' element={ <HouseDetail />} />
-          <Route path='/teams' element={ <Teams />} />
-          <Route path='/login' element={ <Login />} />
-          <Route path="/profile" element={ <Profile />} />
-          <Route path='/login' element={ <Login />} />
-          <Route path="/*" element={ <Nomatch /> } />
-        </Routes>
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={ <Home /> } />
+            <Route path="/register" element={ <Register />} />
+            <Route path='/houses' element={ <Houses />} />
+            <Route path='/houses/:houseId' element={ <HouseDetail />} />
+            <Route path='/teams' element={ <Teams />} />
+            <Route path='/login' element={ <Login />} />
+            <Route path="/profile" element={ <Profile />} />
+            <Route path='/login' element={ <Login />} />
+            <Route path="/*" element={ <Nomatch /> } />
+          </Routes>
+        </AppContainer>
       </>
     </FetchUser>
     <Footer />
