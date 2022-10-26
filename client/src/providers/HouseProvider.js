@@ -97,6 +97,7 @@ const HouseProvider = ({ children }) => {
       .then(res => {
         setRandomHouse(res.data)
       })
+      .catch( err => console.log(err) )
   }
 
   return (
