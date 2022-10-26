@@ -9,7 +9,7 @@ export const HouseConsumer = HouseContext.Consumer;
 
 const HouseProvider = ({ children }) => {
   const [houses, setHouses] = useState([])
-  const [randomHouse, setRandomHouse] = useState(null)
+  const [randomHouse, setRandomHouse] = useState([])
   const navigate = useNavigate()
 
   const [candyAvg, setCandyAvg] = useState(1)

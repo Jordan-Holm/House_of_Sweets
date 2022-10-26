@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :favorites
     end
 
-    get '/randomhouse', to: 'houses#randomhouse'
+    get '/randomhouse', to: 'houses#randomhouses'
     resources :houses do
       get '/candyAverage', to: 'houses#candyAverage'
       get '/scaryAverage', to: 'houses#scaryAverage'
