@@ -52,7 +52,7 @@ const ProfileInfo = ({ id, user, email, name, username, password, updateUser}) =
                     <Modal.Title>Update Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ConnectedRegister 
+                    <ConnectedProfileInfo 
                         updateUser={updateUser} 
                         setUserEdit={setUserEdit} 
                         id={id}
