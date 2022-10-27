@@ -14,7 +14,13 @@ import styled from 'styled-components';
 
 
 const houseContainer = styled.div`
-  background-color: blueviolet;
+  background-color: #833FFF;
+  border-color: #833FFF;
+  margin: 1%;
+`
+
+const textCol = styled.div `
+    color: black;
 `
 
 const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
@@ -116,7 +122,7 @@ const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col as={textCol}>
                         Address: {address}
                         
                         <br />
