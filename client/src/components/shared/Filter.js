@@ -6,7 +6,7 @@ const filterLink = (current, name, setFilter) => {
         as={FilterSpan}
         key={name}
         >
-            {name}&nbsp;
+            {name}&nbsp;-&nbsp;
         </span>
     :
     <span 
@@ -14,7 +14,7 @@ const filterLink = (current, name, setFilter) => {
         onClick={() => setFilter(name)}
         key={name}
     >
-        {name}&nbsp;
+        {name}&nbsp;-&nbsp;
     </span>
 }
 

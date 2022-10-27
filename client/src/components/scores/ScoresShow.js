@@ -8,12 +8,16 @@ import ScoresForm from './ScoresForm';
 import styled from 'styled-components';
 
 const scoreContainer = styled.div`
-  background-color: blueviolet;
+  background-color: #833FFF;
+  border-color: #833FFF;
+  margin: 3%;
   `
 
 const CardContainer = styled.div`
-  background-color: #38F224;
+  background-color: #CC5803;
+  border-color: #CC5803;
   padding: 0%;
+  color: black;
   `
 
 const ScoresShow = ({ id, deleteScore, updateScore, user, user_id, houseId, candy, scary, comment }) => {

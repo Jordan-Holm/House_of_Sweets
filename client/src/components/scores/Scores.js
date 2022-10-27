@@ -3,6 +3,7 @@ import { ScoreConsumer } from '../../providers/ScoreProvider';
 import { HouseConsumer } from '../../providers/HouseProvider';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import ScoresList from './ScoresList';
+import styled from 'styled-components';
 const Scores = ({ houseId, user, addScores, getAllScores, updateScores, deleteScores, scores }) => {
 
   useEffect( () => {
@@ -11,7 +12,7 @@ const Scores = ({ houseId, user, addScores, getAllScores, updateScores, deleteSc
 
   return (
     <>
-      <h1>User Scores</h1>
+      <h1 style={{ color: "black" }}>User Scores</h1>
       <ScoresList 
         scores={scores}
         houseId={houseId}
