@@ -109,8 +109,14 @@ class Api::HousesController < ApplicationController
     end
   end
 
-  def randomhouse 
-    render json: House.all.sample 
+  def randomhouse
+    def randomhouse
+      @random_one = House.all.sample
+      @random_two = House.all.sample
+      @random_three = House.all.sample
+      @randomhouses = [ @random_one, @random_two, @random_three]
+      render json: @randomhouses
+    end
   end
 
   private 

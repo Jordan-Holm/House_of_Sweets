@@ -7,9 +7,7 @@ const Home = () => (
     <>
         <HomeHeader />
         <FilteredHouses />
-        <Card>
-            <ConnectedRandomHouse/>
-        </Card>
+        <ConnectedRandomHouse/>
     </>
 )
 
