@@ -1,28 +1,30 @@
 import { useState } from 'react';
 import { Card, Button, Modal, Container, Row, Col, ListGroup, ModalTitle } from 'react-bootstrap';
 import JordanImg from './Jordan.jpg';
-import './TeamStyle.css'
+import { teamCard, ImageStyle, cardTitle, buttonAlign, createdButton,
+    LinkedInButton, githubButton
+} from '../Style';
 
 const Jordan = ({  Link, id }) => {
     const [show, setShow] = useState(false)
         return (
             <>
                 <Card 
-                    className="teamCard"
+                    as={teamCard}
                 >
                     <Card.Img 
-                        className='Image-style'
+                        as={ImageStyle}
                         variant="top" 
                         src={JordanImg} 
                         />
                     <Card.Body>
-                        <Card.Title className='cardTitle'>Jordan</Card.Title>
+                        <Card.Title as={cardTitle}>Jordan</Card.Title>
                         <Container>
                             <Row>
-                                <Col className='buttonAlign'>
+                                <Col as={buttonAlign}>
                                     <Button 
                                         onClick={ () => setShow(true)}
-                                        className="createdButton"
+                                        as={createdButton}
                                     >
                                         What I Created
                                     </Button>
@@ -107,18 +109,18 @@ const Jordan = ({  Link, id }) => {
                     </Card.Body>
                     <Card.Footer>
                         <Row>
-                            <Col className='buttonAlign'>
+                            <Col as={buttonAlign}>
                                 <Button 
                                     href="https://github.com/Jordan-Holm"
-                                    className='githubButton'
+                                    as={githubButton}
                                 >
                                     Github
                                 </Button>
                             </Col>
-                            <Col className='buttonAlign'>
+                            <Col as={buttonAlign}>
                                 <Button 
                                     href="https://www.linkedin.com/in/jordanleeholm/"
-                                    className='LinkedInButton'
+                                    as={LinkedInButton}
                                 >
                                     LinkedIn
                                 </Button>
