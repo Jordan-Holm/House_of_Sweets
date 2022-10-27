@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image } from "react-bootstrap";
 import { AuthConsumer } from "../../providers/AuthProvider";
-
+import { useLocation } from "react-router-dom";
 const MainNavbar = ({ user, handleLogout }) => {
 
     const linkColor = "white"
+
+    const location = useLocation()
 
     const correctNavItems = () => {
         
@@ -85,54 +87,62 @@ const MainNavbar = ({ user, handleLogout }) => {
             )
         }
     }
-
-    return (
-        <Navbar style={{ 
-            backgroundColor: 'purple',
-            border: "3px solid lightgrey",
-            padding: "15px"
-            }} 
-            expand="lg">
-            <Container fluid="true">
-                <Navbar.Brand>
-                    <Link 
-                        to="/"
-                        style={{ textDecoration: 'none', color: 'orange'}}
-                    >
-                            House of Sweets
-                    </Link>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav 
-                        fluid="true"
-                        className="me-auto"
-                        style={{ 
-                            textAlign: "center",
-                            backgroundColor: "#973ead",
-                            border: "5px solid #7a318c",
-                            position: "relative",
-                            top: "10px"
-                        }}
-                    >
-                        <Nav.Link 
-                            href={"/"}
-                            style={{ color: linkColor }}
+    if ( location.pathname === '/login' || location.pathname === '/register' ){
+        return(
+            <>
+            </>
+        )
+    } else {
+        return (
+            <Navbar style={{ 
+                    backgroundColor: 'purple',
+                    border: "3px solid lightgrey",
+                    padding: "15px"
+                }} 
+                expand="lg"
+            >
+                <Container fluid="true">
+                    <Navbar.Brand>
+                        <Link 
+                            to="/"
+                            style={{ textDecoration: 'none', color: 'orange'}}
                         >
-                            Home
-                        </Nav.Link>
-                        <Nav.Link 
-                            href={"/teams"}
-                            style={{ color: linkColor }}
+                                House of Sweets
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav 
+                            fluid="true"
+                            className="me-auto"
+                            style={{ 
+                                textAlign: "center",
+                                backgroundColor: "#973ead",
+                                border: "5px solid #7a318c",
+                                position: "relative",
+                                top: "10px"
+                            }}
                         >
-                            Team
-                        </Nav.Link>
-                        { correctNavItems() }
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+                            <Nav.Link 
+                                href={"/"}
+                                style={{ color: linkColor }}
+                            >
+                                Home
+                            </Nav.Link>
+                            <Nav.Link 
+                                href={"/teams"}
+                                style={{ color: linkColor }}
+                            >
+                                Team
+                            </Nav.Link>
+                            { correctNavItems() }
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        )
+    }
+    
 }
 
 const ConnectedMainNavbar = (props) => (
