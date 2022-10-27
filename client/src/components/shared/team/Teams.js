@@ -7,7 +7,7 @@ import { Container,Row, Col } from 'react-bootstrap';
 
 const Teams = () => (
     <>
-        <Container>
+        <Container style={{}}>
             <TeamsHeader />
             <Row>
                 <Col>

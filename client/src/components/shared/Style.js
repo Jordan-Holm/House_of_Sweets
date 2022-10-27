@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import { Card, Image } from 'react-bootstrap';
+import { Button, Card, Image } from 'react-bootstrap';
 
 export const MainP = styled.p`
    font-size: 13px;
@@ -149,7 +149,7 @@ export const ScoreImg = styled(Image) `
 
 export const teamCard = styled(Card) `
    width: 80%;
-   background-color: #ff7f11;
+   background-color: #CC5803;
    border-color: black;
    border-width: 3px;
 `
@@ -163,6 +163,8 @@ export const ImageStyle = styled(Image)`
 
 export const cardTitle = styled.div `
    color: black;
+   text-align: center; 
+   font-size: 200%;
 `
 
 export const buttonAlign = styled.div `
@@ -174,13 +176,13 @@ export const createdButton = styled.button `
    border-color: #833FFF;
 `
 
-export const githubButton = styled.button `
+export const GithubButton = styled(Button) `
    margin: 5%;
    background-color: #833FFF;
    border-color: #833FFF;
 `
 
-export const LinkedInButton = styled.button `
+export const LinkedInButton = styled(Button) `
    margin: 5%;
    background-color: #833FFF;
    border-color: #833FFF;
