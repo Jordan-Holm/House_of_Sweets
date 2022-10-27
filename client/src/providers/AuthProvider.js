@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     const handleRegister = (user) => {
-        axios.post('/api/user', user ) 
+        axios.post('/api/auth', user ) 
             .then( res => {
                 setUser(res.data.data)
                 navigate('/')
