@@ -185,3 +185,9 @@ export const LinkedInButton = styled.button `
    background-color: #833FFF;
    border-color: #833FFF;
 `
+
+//FILTER STYLE
+
+export const FilterSpan = styled.span `
+   text-decoration: underline;
+`

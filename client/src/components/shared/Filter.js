@@ -1,14 +1,20 @@
 import { Form, Button, Row, Col } from "react-bootstrap";
-
+import { FilterSpan } from "./Style";
 const filterLink = (current, name, setFilter) => {
     return current === name ?
-        <span key={name}>{name}</span>
+        <span 
+        as={FilterSpan}
+        key={name}
+        >
+            {name}&nbsp;
+        </span>
     :
     <span 
+        as={FilterSpan}
         onClick={() => setFilter(name)}
         key={name}
     >
-        {name}
+        {name}&nbsp;
     </span>
 }
 
