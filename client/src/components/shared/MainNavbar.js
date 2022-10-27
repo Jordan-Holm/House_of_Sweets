@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image } from "react-bootstrap";
+import { Navbar, Nav, Button, Container, Tooltip, OverlayTrigger, Image, Row, Col } from "react-bootstrap";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { useLocation } from "react-router-dom";
+
+import GhostIcon from "./4.png";
 const MainNavbar = ({ user, handleLogout }) => {
 
     const linkColor = "white"
@@ -23,66 +25,92 @@ const MainNavbar = ({ user, handleLogout }) => {
                     <button onClick= {() => handleLogout() }>
                         Logout
                     </button> */}
-                    <Nav.Link 
-                        href={"/houses"}
-                        style={{ color: linkColor }}
-                    >
-                        Houses
-                    </Nav.Link>
-                    <OverlayTrigger
-                        placement="bottom"
-                        overlay={<Tooltip id="button-tooltip-2">Profile</Tooltip>}
-                    >
-                        <Nav.Link 
-                            href={"/profile"}
+                    <Col>
+                        {/* <Nav.Link 
+                            href={"/houses"}
                             style={{ color: linkColor }}
+                            >
+                            Houses
+                        </Nav.Link> */}
+                        <Link
+                            to="/houses"
+                            style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
                         >
-                            <Image
-                                roundedCircle
-                                width="25px"
-                                height="25px"
-                                src={user.image}
-                            />
-                            My Profile
-                        </Nav.Link>
-                    </OverlayTrigger>
-                    <Button 
-                        onClick={() => handleLogout()}
-                        style={{ 
-                            backgroundColor: 'grey', 
-                            borderColor: 'black',
-                        }}
-                    >
-                        Logout
-                    </Button>
+                            Houses
+                        </Link>
+                    </Col>
+                    <Col>
+                        {/* <OverlayTrigger
+                            placement="bottom"
+                            overlay={<Tooltip id="button-tooltip-2">Profile</Tooltip>}
+                            >
+                            <Nav.Link 
+                                href={"/profile"}
+                                style={{ color: linkColor }}
+                                >
+                                <Image
+                                    roundedCircle
+                                    width="25px"
+                                    height="25px"
+                                    src={user.image}
+                                    />
+                                My Profile
+                            </Nav.Link>
+                        </OverlayTrigger> */}
+                        <Link
+                            to="/profile"
+                            style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
+                        >
+                            profile
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Button 
+                            onClick={() => handleLogout()}
+                            style={{ 
+                                backgroundColor: 'grey', 
+                                borderColor: 'black',
+                                height: "50%",
+                                fontSize: "80%",
+                            }}
+                            >
+                            Logout
+                        </Button>
+                    </Col>
                 </>
             )
         } else {
 
             return (
                 <>
-                    {/* <Link to='/login'>
-                        <li>Login</li>
-                    </Link>
-                    <Link to='/register'>
-                        <li>Register</li>
-                    </Link> */}
-                    <Nav.Link 
-                        href={"/houses"}
-                        style={{ color: linkColor }}
-                    ></Nav.Link>
-                    <Nav.Link 
-                        href={"/login"}
-                        style={{ color: linkColor }}
-                    >
-                        Login
-                    </Nav.Link>
-                    <Nav.Link 
-                        href={"/register"}
-                        style={{ color: linkColor }}
-                    >
-                        Create An Account
-                    </Nav.Link>
+                    <Col>
+                        {/* <Nav.Link 
+                            href={"/login"}
+                            style={{ color: linkColor }}
+                            >
+                            Login
+                        </Nav.Link> */}
+                        <Link
+                            to="/login"
+                            style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
+                        >
+                            Login
+                        </Link>
+                    </Col>
+                    <Col>
+                        {/* <Nav.Link 
+                            href={"/register"}
+                            style={{ color: linkColor }}
+                            >
+                            Create An Account
+                        </Nav.Link> */}
+                        <Link
+                            to="/register"
+                            style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
+                        >
+                            Create An Account
+                        </Link>
+                    </Col>
                 </>
             )
         }
@@ -94,52 +122,87 @@ const MainNavbar = ({ user, handleLogout }) => {
         )
     } else {
         return (
-            <Navbar style={{ 
-                    backgroundColor: 'purple',
-                    border: "3px solid lightgrey",
-                    padding: "15px"
-                }} 
-                expand="lg"
-            >
-                <Container fluid="true">
-                    <Navbar.Brand>
-                        <Link 
-                            to="/"
-                            style={{ textDecoration: 'none', color: 'orange'}}
-                        >
-                                House of Sweets
-                        </Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav 
-                            fluid="true"
-                            className="me-auto"
-                            style={{ 
-                                textAlign: "center",
-                                backgroundColor: "#973ead",
-                                border: "5px solid #7a318c",
-                                position: "relative",
-                                top: "10px"
-                            }}
-                        >
-                            <Nav.Link 
-                                href={"/"}
-                                style={{ color: linkColor }}
+            // <Navbar style={{ 
+            //         border: "3px solid lightgrey",
+            //         padding: "15px"
+            //     }} 
+            //     expand="lg"
+            // >
+            //     <Container fluid="true">
+            //         <Row>
+            //             <Navbar.Brand>
+            //                 <Link 
+            //                     to="/"
+            //                     style={{ textDecoration: 'none' }}
+            //                 >
+            //                     <Image 
+            //                             src={GhostIcon}
+            //                             width="10%"
+            //                     />
+            //                 </Link>
+            //             </Navbar.Brand>
+            //             <Nav 
+            //                 fluid="true"
+            //                 className="me-auto"
+            //                 style={{ 
+            //                     textAlign: "center",
+            //                     position: "relative",
+            //                     top: "10px"
+            //                 }}
+            //                 >
+            //                 <Col>
+            //                     <Nav.Link 
+            //                         href={"/"}
+            //                         style={{ color: linkColor }}
+            //                         >
+            //                         Home
+            //                     </Nav.Link>
+            //                 </Col>
+            //                 <Col>
+            //                     <Nav.Link 
+            //                         href={"/teams"}
+            //                         style={{ color: linkColor }}
+            //                         >
+            //                         Team
+            //                     </Nav.Link>
+            //                 </Col>
+            //                 { correctNavItems() }
+            //             </Nav>
+            //         </Row>
+            //     </Container>
+            // </Navbar>
+            <>
+                    <Row>
+                        <Col>
+                            <Link
+                                to="/"
+                                style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
+                            >
+                                <Image 
+                                    src={GhostIcon}
+                                    width="30%"
+                                    />
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link
+                                to="/"
+                                style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
                             >
                                 Home
-                            </Nav.Link>
-                            <Nav.Link 
-                                href={"/teams"}
-                                style={{ color: linkColor }}
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link
+                                to="/teams"
+                                style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
                             >
                                 Team
-                            </Nav.Link>
-                            { correctNavItems() }
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+                            </Link>
+                        </Col>
+                        { correctNavItems() }
+                    </Row>
+            </>
         )
     }
     
