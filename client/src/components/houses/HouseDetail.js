@@ -15,8 +15,7 @@ import styled from 'styled-components';
 
 const houseContainer = styled.div`
   background-color: blueviolet;
-  `
-
+`
 
 const HouseDetail = ({ user, addFavs, deleteHouse, updateHouse, addScore }) => {
     const [showing, setShow] = useState(false)

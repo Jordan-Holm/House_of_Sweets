@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
                 setUser(res.data.data)
                 navigate('/')
             })
-            .catchh( err => {
+            .catch( err => {
                 console.log(err)
                 setErrors({
                     variant: 'danger',
@@ -74,3 +74,11 @@ const AuthProvider = ({ children }) => {
 }
 
 export default AuthProvider;
+
+const findRandomHouse = (value, array) => {
+    for( let i = 0; i < array.length; i++) {
+        if( array[i] === value) {
+            return i;
+        }
+    }
+}
