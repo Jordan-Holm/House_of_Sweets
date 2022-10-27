@@ -6,9 +6,11 @@ import ProfileInfo from "./ProfileInfo";
 
 const Profile = () => (
     <>
-        <ProfileHeader />
-        <ProfileInfo />
-        <ProfileFavs />
+        <Container>
+            <ProfileHeader />
+            <ProfileInfo />
+            <ProfileFavs />
+        </Container>
     </>
 )
 

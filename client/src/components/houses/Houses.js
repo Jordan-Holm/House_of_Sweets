@@ -5,6 +5,7 @@ import { Modal, Button, Row, Container, Col } from 'react-bootstrap';
 import { HouseConsumer } from '../../providers/HouseProvider';
 import Filter from '../shared/Filter';
 import Sort from '../shared/Sort';
+import { houseCardContainer, filterRow, addButton, addButtonColor } from '../shared/Style';
 
 const Houses = ({ addHouse, houses, getAllHouses }) => {
   const [adding, setAdd] = useState(false)
@@ -29,39 +30,42 @@ const Houses = ({ addHouse, houses, getAllHouses }) => {
   }
   
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Button onClick={() => setAdd(true)}>
-            +
-          </Button>
-
-          <Modal show={adding} onHide={() => setAdd(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Add House</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <HouseForm addHouse={addHouse} setAdd={setAdd} />
-            </Modal.Body>
-          </Modal>
-        </Col>
-      </Row>
+    <Container>   
       <Row>
         <h1>All Houses</h1>
       </Row>
 
-      <Row>
-        <Filter 
-          filter={filter}
-          setFilter={setFilter}
-        />
-      </Row>
-
-      <Row>
-        <HouseList 
-          houses={visibleHouses()}
-        />
-      </Row>
+        <Container as={houseCardContainer}>
+          <Row as={filterRow}>
+            <Col>
+              <Filter 
+                filter={filter}
+                setFilter={setFilter}
+              />
+            </Col>
+            <Col as={addButton}>
+              <Button 
+                onClick={() => setAdd(true)}
+                as={addButtonColor}
+              >
+                +
+              </Button>
+              <Modal show={adding} onHide={() => setAdd(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add House</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <HouseForm addHouse={addHouse} setAdd={setAdd} />
+                </Modal.Body>
+              </Modal>
+            </Col>
+          </Row>
+          <Row>
+            <HouseList 
+              houses={visibleHouses()}
+            />
+          </Row>
+        </Container>
     </Container>
   )
 }
