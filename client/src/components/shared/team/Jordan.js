@@ -63,6 +63,9 @@ const Jordan = ({  Link, id }) => {
                                                             <li>
                                                                 Team Card Styling
                                                             </li>
+                                                            <li>
+                                                                NavBar Styling
+                                                            </li>
                                                         </ol>
                                                     </Row>
                                                 </Col>
