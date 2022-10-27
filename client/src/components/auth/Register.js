@@ -125,6 +125,7 @@ const Register = ({ handleRegister, errors, setErrors }) => {
                                     <Button 
                                         as={registerButton}
                                         type="submit"
+                                        // variant=""
                                     >
                                         Get Started
                                     </Button>
