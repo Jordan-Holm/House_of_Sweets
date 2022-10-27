@@ -110,13 +110,11 @@ class Api::HousesController < ApplicationController
   end
 
   def randomhouse
-    def randomhouse
-      @random_one = House.all.sample
-      @random_two = House.all.sample
-      @random_three = House.all.sample
-      @randomhouses = [ @random_one, @random_two, @random_three]
-      render json: @randomhouses
-    end
+    @random_one = House.all.sample
+    @random_two = House.all.sample
+    @random_three = House.all.sample
+    @randomhouses = [ @random_one, @random_two, @random_three]
+    render json: @randomhouses
   end
 
   private 
