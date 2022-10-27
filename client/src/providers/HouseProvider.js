@@ -9,6 +9,7 @@ export const HouseConsumer = HouseContext.Consumer;
 
 const HouseProvider = ({ children }) => {
   const [houses, setHouses] = useState([])
+  const [randomHouse, setRandomHouse] = useState(null)
   const navigate = useNavigate()
 
   const [candyAvg, setCandyAvg] = useState(1)
@@ -91,6 +92,14 @@ const HouseProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
+  const getRandomHouse = () => {
+    axios.get('/api/randomhouse')
+      .then(res => {
+        setRandomHouse(res.data)
+      })
+      .catch( err => console.log(err) )
+  }
+
   return (
     <HouseContext.Provider value={{
       houses, 
@@ -101,7 +110,9 @@ const HouseProvider = ({ children }) => {
       candyAverage,
       candyAvg,
       scaryAverage,
-      scaryAvg
+      scaryAvg,
+      getRandomHouse,
+      randomHouse
     }}>
       { children }
     </HouseContext.Provider>

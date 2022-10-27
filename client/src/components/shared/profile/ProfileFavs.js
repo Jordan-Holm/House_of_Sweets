@@ -13,7 +13,7 @@ const ProfileFavs = () => {
                 marginRight: 'auto' 
                 }}>
                 <Card.Body className='profileBody'>  
-                    <Card.Title className='clearColor'>Favorites</Card.Title>
+                    <Card.Title>Favorites</Card.Title>
                     <Favs />
                 </Card.Body>
             </Card>
