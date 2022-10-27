@@ -1,4 +1,3 @@
-import './TeamStyle.css'
 
 const TeamsHeader = () => (
     <>

@@ -10,6 +10,10 @@ import { AuthConsumer } from '../../providers/AuthProvider';
 import { FavsConsumer } from '../../providers/FavsProvider';
 import { ScoreConsumer } from '../../providers/ScoreProvider';
 
+import { cardBody, CardLink, ScoreImg, scoreImg } from '../shared/Style';
+import CandyImg from './Candy.png';
+import GhostImg from './Ghost.png';
+
 const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_candy, avg_scary, deleteHouse, updateHouse, addScore }) => {
   const [addingScore, setScoreAdd] = useState(false)
   useEffect(() => {
@@ -53,49 +57,61 @@ const HouseShow = ({ id, user, addFavs,  house_name, address, city, img, avg_can
   return (
     
     <>
-      <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={img} width='200px' height='200px' />
-        <Card.Body>
-          <Card.Title>{house_name}</Card.Title>
-          <Card.Subtitle>City: {city}</Card.Subtitle>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Candy Rating: {candyAvg}</ListGroup.Item>
-            <ListGroup.Item>Scary Rating: {scaryAvg}</ListGroup.Item>
-          </ListGroup>
-          <Link 
-            to={`/houses/${id}`}
-            state={{
-              address,
-              city,
-              img,
-              house_name,
-              avg_candy,
-              avg_scary,
-            }}
-            >
-            <Button 
-              variant="primary"
-              id={id}
-            >
-              View
-            </Button>
-          </Link>
-          <Button onClick={ () => setScoreAdd(true)}>
-            Rate
-          </Button>
-          <Modal show={addingScore} onHide={() => setScoreAdd(false)}>
-            <Modal.Header closeButton>
-              <Modal.Body>
-                <ScoresForm 
-                  addScore={addScore}
-                  houseId={id}
-                  setScoreAdd={setScoreAdd}
-                />
-              </Modal.Body>
-            </Modal.Header>
-          </Modal>
-        </Card.Body>
-      </Card>
+      <CardLink 
+        to={`/houses/${id}`}
+        state={{
+          address,
+          city,
+          img,
+          house_name,
+          avg_candy,
+          avg_scary,
+        }}
+      >
+        <Card 
+          as={cardBody}
+          style={{ width: '12rem' }}
+        >
+          <Card.Img variant="top" src={img} width='200px' height='200px' />
+          <Card.Body>
+            <Row>
+              <Col>
+                <Card.Title>{house_name}</Card.Title>
+                <Card.Subtitle>City: {city}</Card.Subtitle>
+              </Col>
+              <Col>
+                <Card.Text>
+                  <ScoreImg
+                    thumbnail
+                    width="40%"
+                    src={CandyImg}
+                  /> = {candyAvg}
+                </Card.Text>
+                <Card.Text>
+                  <ScoreImg 
+                    thumbnail
+                    width="40%"
+                    src={GhostImg}
+                  /> = {scaryAvg}
+                </Card.Text>
+              </Col>
+            </Row>
+            <Row>
+            </Row>
+            <Modal show={addingScore} onHide={() => setScoreAdd(false)}>
+              <Modal.Header closeButton>
+                <Modal.Body>
+                  <ScoresForm 
+                    addScore={addScore}
+                    houseId={id}
+                    setScoreAdd={setScoreAdd}
+                  />
+                </Modal.Body>
+              </Modal.Header>
+            </Modal>
+          </Card.Body>
+        </Card>
+      </CardLink>
     </>
   )
 }
