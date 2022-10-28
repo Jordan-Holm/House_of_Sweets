@@ -4,6 +4,10 @@
 
 }
 
+.houseClear {
+  opacity: 80%;
+}
+
 .favoriteButton {
   background-color:rgb(139, 109, 167) ;
   
