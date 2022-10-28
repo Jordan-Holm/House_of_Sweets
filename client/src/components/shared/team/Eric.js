@@ -54,6 +54,9 @@ const Eric = ({  Link, id }) => {
                                                             <li>
                                                                 House Deatil Page framework
                                                             </li>
+                                                            <li>
+                                                                Random House functionality and styling
+                                                            </li>
                                                         </ol>
                                                     </Row>
                                                 </Col>
@@ -63,7 +66,12 @@ const Eric = ({  Link, id }) => {
                                                     </h4>
                                                     <Row>
                                                         <ol>
-                                                            Mostly edditing and bug fixing
+                                                            <li>
+                                                                Randomhouse in House Controller
+                                                            </li>
+                                                            <li>
+                                                                Mostly edditing and bug fixing
+                                                            </li>
                                                         </ol>
                                                     </Row>
                                                 </Col>
