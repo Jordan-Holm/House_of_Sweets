@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, Button, Modal, Container, Row, Col, ListGroup, ModalTitle } from 'react-bootstrap';
 import HectorImg from './Hector.jpg';
 import { teamCard, ImageStyle, cardTitle, buttonAlign, createdButton,
-    LinkedInButton, githubButton
+    LinkedInButton, GithubButton
 } from '../Style';
 
 const Jordan = ({  Link, id }) => {
@@ -96,20 +96,20 @@ const Jordan = ({  Link, id }) => {
                     <Card.Footer>
                         <Row>
                             <Col as={buttonAlign}>
-                                <Button 
+                                <GithubButton 
                                     href="https://www.github.com/Hectorgz25"
-                                    as={githubButton}
+                                    
                                 >
                                     Github
-                                </Button>
+                                </GithubButton>
                             </Col>
                             <Col as={buttonAlign}>
-                                <Button 
+                                <LinkedInButton 
                                     href="https://www.linkedin.com/in/hectorgonzalez2525/"
                                     as={LinkedInButton}
                                 >
                                     LinkedIn
-                                </Button>
+                                </LinkedInButton>
                             </Col>
                         </Row>
                     </Card.Footer>
