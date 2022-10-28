@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { Card, Button, Modal, Container, Row, Col, ListGroup, ModalTitle } from 'react-bootstrap';
-
+import { teamCard, ImageStyle, cardTitle, buttonAlign, createdButton, LinkedInButton, GithubButton } from '../Style';
 const Eric = ({  Link, id }) => {
     const [show, setShow] = useState(false)
         return (
             <>
-                <Card style={{ width: '12rem' }}>
-                    <Card.Img variant="top" src="https://res.cloudinary.com/dgcjckeym/image/upload/v1666735491/CC3B5CB5-F643-41DA-9CDF-50CC2E69A5B9_tcp5pu.jpg" width='200px' height='200px' />
+                <Card as={teamCard}>
+                    <Card.Img 
+                        as={ImageStyle}
+                        variant="top" 
+                        src="https://res.cloudinary.com/dgcjckeym/image/upload/v1666735491/CC3B5CB5-F643-41DA-9CDF-50CC2E69A5B9_tcp5pu.jpg" width='200px' height='200px' 
+                    />
                     <Card.Body>
-                    <Card.Title>Eric</Card.Title>
+                    <Card.Title as={cardTitle} >Eric</Card.Title>
                         <Container>
                             <Row>
-                                <Col className='buttonAlign'>
+                                <Col as={buttonAlign}>
                                     <Button 
                                         onClick={ () => setShow(true)}
-                                        className="createdButton"
+                                        as={createdButton}
                                     >
                                         What I Created
                                     </Button>
@@ -74,30 +78,29 @@ const Eric = ({  Link, id }) => {
                                             Close
                                         </Button>
                                     </Modal.Footer>
-                            </Modal>
-                        </Container>
+                                </Modal>
+                            </Container>
+                        </Card.Body>
                         <Card.Footer>
-                        <Row>
-                            <Col className='buttonAlign'>
-                            <Button 
-                                href="https://github.com/PerkinsEric"
-                                className='githubButton'
-                            >
-                                Github
-                            </Button>
-                            </Col>
-                            <Col className='buttonAlign'>
-                                <Button 
-                                    href="www.linkedin.com/in/eric-perkins-777267225/"
-                                    className='LinkedInButton'
-                                >
-                                    LinkedIn
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Card.Footer>
-                        
-                    </Card.Body>
+                            <Row>
+                                <Col as={buttonAlign}>
+                                    <Button 
+                                        href="https://github.com/PerkinsEric"
+                                        as={LinkedInButton}
+                                    >
+                                        Github
+                                    </Button>
+                                </Col>
+                                <Col as={buttonAlign}>
+                                    <Button 
+                                        href="www.linkedin.com/in/eric-perkins-777267225/"
+                                        as={LinkedInButton}
+                                    >
+                                        LinkedIn
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Card.Footer>    
                 </Card>
             </>
     )
