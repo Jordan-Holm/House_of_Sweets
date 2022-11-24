@@ -61,7 +61,7 @@ const MainNavbar = ({ user, handleLogout }) => {
                             to="/profile"
                             style={{ textDecoration: 'none', color: 'white', fontSize: '140%' }}
                         >
-                            profile
+                            Profile
                         </Link>
                     </Col>
                     <Col>
@@ -70,7 +70,7 @@ const MainNavbar = ({ user, handleLogout }) => {
                             style={{ 
                                 backgroundColor: 'grey', 
                                 borderColor: 'black',
-                                height: "50%",
+                                height: "40px",
                                 fontSize: "80%",
                             }}
                             >
@@ -172,7 +172,15 @@ const MainNavbar = ({ user, handleLogout }) => {
             //     </Container>
             // </Navbar>
             <>
-                    <Row>
+                    <Row
+                        style={{ 
+                            backgroundColor: "#1F1300",
+                            border: "3px solid #FFFFFF",
+                            position: "sticky",
+                            top: "0",
+                            zIndex: "50",
+                        }}
+                    >
                         <Col>
                             <Link
                                 to="/"

@@ -1,7 +1,6 @@
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { useState } from "react";
 import Flash from "../shared/Flash";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ghostImg from './login/White & Orange Simple Hand Drawn Ghost Character Halloween Logo (1).png'
@@ -14,7 +13,7 @@ import { imageContainer, imageObject, imageTextRowRegister, registerBody,
 
 
 const Register = ({ handleRegister, errors, setErrors }) => {
-    const [user, setUser] = useState({name: '', username: '', email: '', password: '' })
+    const [user, setUser] = useState({name: '', nickname: '', email: '', password: '' })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -70,7 +69,6 @@ const Register = ({ handleRegister, errors, setErrors }) => {
                                 <Form.Group as={registerName}>
                                     <Form.Label>Your Name</Form.Label>
                                     <Form.Control 
-                                        type="name"
                                         name="name"
                                         value={user.name}
                                         onChange={ (e) => setUser({ ...user, name: e.target.value })}
@@ -81,10 +79,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
                                 <Form.Group as={registerOrigin}>
                                     <Form.Label>Your User Name</Form.Label>
                                     <Form.Control 
-                                        type="username"
-                                        name="username"
-                                        value={user.user}
-                                        onChange={ (e) => setUser({ ...user, username: e.target.value })}
+                                        name="nickname"
+                                        value={user.nickname}
+                                        onChange={ (e) => setUser({ ...user, nickname: e.target.value })}
                                         required
                                         placeholder="User"
                                     />

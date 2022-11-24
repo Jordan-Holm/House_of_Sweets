@@ -6,8 +6,8 @@ const ProfileFavs = () => {
 
     return (
         <>
-            <Card style={{width: '65rem', 
-                height: '22rem', 
+            <Card style={{
+                borderColor: "#CC5803",
                 top: '1rem',
                 marginLeft: 'auto',
                 marginRight: 'auto' 

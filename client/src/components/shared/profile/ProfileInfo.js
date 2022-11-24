@@ -14,7 +14,8 @@ const ProfileInfo = ({ id, user, email, name, username, password, updateUser}) =
                 width: '65rem', 
                 height: '18rem',
                 marginLeft: 'auto',
-                marginRight: 'auto' 
+                marginRight: 'auto',
+                borderColor: "#CC5803"
                 }}
                 className='profileBody'
                 >
@@ -37,7 +38,7 @@ const ProfileInfo = ({ id, user, email, name, username, password, updateUser}) =
                                 roundedCircle
                                 width="200px"
                                 height="200px"
-                                src={user.image}
+                                src="https://images.unsplash.com/photo-1643533694234-fee2444dc7a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGVmYXVsdCUyMHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
                             />
                         </Col>
                         <Col>
