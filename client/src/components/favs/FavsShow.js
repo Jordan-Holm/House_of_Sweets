@@ -73,8 +73,9 @@ const FavsShow = ({ id, deleteFavs, userId, house_id }) => {
     <>
       <ListGroup.Item>
         <Card 
-        style={{ width: '20rem', 
-          height: '17rem'
+        style={{ 
+          margin: "5%",
+          borderColor: "#CC5803"
         }}
         onClick={() => setShow(true)}
         >

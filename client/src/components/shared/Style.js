@@ -10,6 +10,7 @@ export const MainP = styled.p`
 
 export const imageContainer = styled.div `
    background-color: #cc5803;
+   
 `
 export const imageObject = styled.image `
    padding: 0%;
@@ -152,6 +153,7 @@ export const teamCard = styled(Card) `
    background-color: #CC5803;
    border-color: black;
    border-width: 3px;
+   margin: 5%;
 `
 
 export const ImageStyle = styled(Image)`

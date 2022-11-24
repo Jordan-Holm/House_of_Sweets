@@ -3,7 +3,7 @@ import FavsShow from './FavsShow';
 
 const FavList = ({ favorites, userId }) => (
   <Container>
-    <Row xl="5" lg="4" md="3" sm="2" xs="2">
+    <Row xl="4" lg="4" md="3" sm="2" xs="2">
       { favorites.map( f => 
         <FavsShow 
           key={f.id}
