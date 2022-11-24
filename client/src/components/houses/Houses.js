@@ -1,20 +1,41 @@
 import { useEffect, useState } from 'react';
 import HouseList from './HouseList';
 import HouseForm from './HouseForm';
-import { Modal, Button, Row, Container, Col } from 'react-bootstrap';
+import { Modal, Button, Row, Container, Col, Pagination } from 'react-bootstrap';
 import { HouseConsumer } from '../../providers/HouseProvider';
 import Filter from '../shared/Filter';
-import Sort from '../shared/Sort';
 import { houseCardContainer, filterRow, addButton, addButtonColor } from '../shared/Style';
+import { paginationStyle } from '../shared/Style';
 
-const Houses = ({ addHouse, houses, getAllHouses }) => {
+const Houses = ({ addHouse, houses, getAllHouses, pagination }) => {
   const [adding, setAdd] = useState(false)
   // const [filterHouses, setHouses] = useState([houses])
   const [filter, setFilter] = useState('All')
+  const [pages, setPages] = useState([])
+  const [active, setActive] = useState(1)
 
   useEffect( () => {
     getAllHouses()
+    renderPages()
   }, [])
+
+  const renderPages = () => {
+    let items = [];
+    for (let num = 1; num <= pagination; num ++) {
+      items.push(
+        <Pagination.Item 
+          key={num} 
+          active={num === active}
+          onClick={ () => {
+            getAllHouses(num)
+          }}
+        >
+          {num}
+        </Pagination.Item>
+      )
+    }
+    setPages(items)
+  }
 
   const visibleHouses = () => {
     switch(filter) {
@@ -64,6 +85,13 @@ const Houses = ({ addHouse, houses, getAllHouses }) => {
             <HouseList 
               houses={visibleHouses()}
             />
+          </Row>
+          <Row>
+            <Pagination 
+              className='d-flex justify-content-center'
+            >
+              {pages}
+            </Pagination>
           </Row>
         </Container>
     </Container>

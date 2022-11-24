@@ -10,6 +10,8 @@ export const HouseConsumer = HouseContext.Consumer;
 const HouseProvider = ({ children }) => {
   const [houses, setHouses] = useState([])
   const [randomHouse, setRandomHouse] = useState([])
+  const [pagination, setPagination] = useState(1)
+  const [headers, setHeaders] = useState({})
   const navigate = useNavigate()
 
   const [candyAvg, setCandyAvg] = useState(1)
@@ -42,9 +44,15 @@ const HouseProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
-  const getAllHouses = () => {
-    axios.get('/api/houses')
-      .then( res => setHouses(res.data))
+  const getAllHouses = (page = 1) => {
+    axios.get(`/api/houses?page=${page}`)
+      .then( res => {
+        const { data, headers } = res
+        const totalPages = Math.ceil(headers['x-total'] / headers['x-per-page'])
+        setPagination(totalPages)
+        setHouses(data)
+        setHeaders(headers)
+      })
       .catch( err => console.log(err.response.data.errors.full_messages[0]) )
   }
 
@@ -111,7 +119,9 @@ const HouseProvider = ({ children }) => {
       scaryAverage,
       scaryAvg,
       getRandomHouse,
-      randomHouse
+      randomHouse,
+      pagination,
+      headers,
     }}>
       { children }
     </HouseContext.Provider>
