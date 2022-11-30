@@ -2,7 +2,7 @@ class Api::HousesController < ApplicationController
   before_action :set_house, only: [:show, :update, :destroy]
 
   def index
-    render json: House.all 
+    paginate json: House.all, per_page: 10;
   end
 
   def show

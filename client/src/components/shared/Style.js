@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card, Image, Pagination } from 'react-bootstrap';
 
 export const MainP = styled.p`
    font-size: 13px;
@@ -194,4 +194,10 @@ export const LinkedInButton = styled(Button) `
 
 export const FilterSpan = styled.span `
    text-decoration: underline;
+`
+
+//PAGINATION STYLE
+export const paginationStyle = styled(Pagination)`
+   background-color: #833FFF;
+   border-color: #833FFF;
 `

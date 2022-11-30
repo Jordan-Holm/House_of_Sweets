@@ -96,6 +96,9 @@ const Jordan = () => {
                                                             <li>
                                                                 Score Model & Controller
                                                             </li>
+                                                            <li>
+                                                                Protected Routes
+                                                            </li>
                                                         </ol>
                                                     </Row>
                                                 </Col>
